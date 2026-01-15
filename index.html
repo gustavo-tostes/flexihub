@@ -16,11 +16,13 @@
       --muted2:#8a8a93;
       --accent:#ffffff;
       --accentText:#0e0e11;
+      --ok:#9be9a8;
+      --err:#ffb4b4;
 
+      /* Tech vibe */
       --glowA: rgba(120,120,255,0.18);
       --glowB: rgba(120,255,220,0.08);
       --grid: rgba(255,255,255,0.03);
-
       --aiBorder: rgba(140,140,255,0.35);
       --aiGlow: rgba(120,120,255,0.22);
       --aiText: #e6e7ff;
@@ -34,13 +36,21 @@
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+      /* Futuristic background: subtle glow + grid */
       background:
         radial-gradient(900px 420px at 50% -12%, var(--glowA), transparent 60%),
         radial-gradient(700px 360px at 10% 10%, var(--glowB), transparent 60%),
         linear-gradient(var(--grid) 1px, transparent 1px),
         linear-gradient(90deg, var(--grid) 1px, transparent 1px),
         var(--bg);
-      background-size: auto, auto, 52px 52px, 52px 52px, auto;
+      background-size:
+        auto,
+        auto,
+        52px 52px,
+        52px 52px,
+        auto;
+
       color: var(--text);
     }
 
@@ -50,16 +60,28 @@
       padding: 80px 24px 64px;
     }
 
+    /* Top badge */
     .badge {
       display: inline-flex;
+      align-items: center;
+      gap: 10px;
       padding: 10px 14px;
-      border-radius: 999px;
       border: 1px solid var(--border);
       background: rgba(18,18,24,0.7);
+      border-radius: 999px;
       color: var(--muted2);
       font-size: 12px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
+      backdrop-filter: blur(6px);
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 40px;
     }
 
     h1 {
@@ -70,19 +92,14 @@
     }
 
     .lead {
+      margin: 0 0 12px;
       font-size: 18px;
       line-height: 1.7;
       color: var(--muted);
       max-width: 760px;
-      margin-bottom: 14px;
     }
 
-    .hero {
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      padding-bottom: 40px;
-      margin-bottom: 40px;
-    }
-
+    /* AI preview card */
     .ai-preview {
       margin-top: 18px;
       max-width: 520px;
@@ -104,30 +121,77 @@
       text-transform: uppercase;
     }
 
-    .ai-preview p { margin: 6px 0; color: var(--aiText); }
-    .ai-preview span { color: var(--aiGood); font-weight: 700; }
+    .ai-preview p {
+      margin: 6px 0;
+      color: var(--aiText);
+      line-height: 1.5;
+    }
 
-    .form-wrap { margin-top: 22px; max-width: 520px; }
-    .form-card {
+    .ai-preview span {
+      color: var(--aiGood);
+      font-weight: 700;
+    }
+
+    /* Form card */
+    .form-wrap {
+      margin-top: 22px;
+      max-width: 520px;
+    }
+
+    .form-card{
       border: 1px solid var(--border);
       background: linear-gradient(180deg, rgba(22,22,30,0.92), rgba(14,14,17,0.90));
       border-radius: 16px;
       padding: 18px;
+      box-shadow: 0 18px 60px rgba(0,0,0,0.45);
+      backdrop-filter: blur(6px);
     }
 
-    form { display: grid; gap: 12px; }
+    .form-title{
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted2);
+      margin: 0 0 10px;
+    }
 
-    input {
-      padding: 14px;
+    form.form {
+      display: grid;
+      gap: 12px;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 720px){
+      h1 { font-size: 40px; }
+      .row { grid-template-columns: 1fr; }
+      .container { padding-top: 64px; }
+    }
+
+    .form input {
+      padding: 14px 14px;
       border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.10);
       background: rgba(14,14,17,0.55);
       color: var(--text);
       font-size: 16px;
+      outline: none;
     }
 
-    button {
-      padding: 14px;
+    .form input::placeholder { color: var(--muted2); }
+
+    .form input:focus {
+      border-color: rgba(255,255,255,0.26);
+      background: rgba(14,14,17,0.75);
+    }
+
+    .form button {
+      padding: 14px 16px;
       border-radius: 12px;
       border: none;
       background: var(--accent);
@@ -137,64 +201,204 @@
       cursor: pointer;
     }
 
-    .helper { font-size: 13px; color: var(--muted2); }
+    .form button:disabled { opacity: 0.6; cursor: not-allowed; }
 
-    section { margin: 64px 0; }
+    .helper {
+      font-size: 13px;
+      color: var(--muted2);
+      margin: 2px 0 0;
+      line-height: 1.5;
+    }
+
+    .success { font-size: 13px; color: var(--ok); margin-top: 6px; }
+    .error { font-size: 13px; color: var(--err); margin-top: 6px; }
+
+    /* Sections */
+    section {
+      margin: 44px 0;
+    }
 
     .section-title {
       font-size: 22px;
-      margin-bottom: 14px;
-    }
-
-    /* OBJEÇÃO */
-    .objection-box {
-      max-width: 780px;
-      margin: 0 auto;
-      padding: 28px 26px;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: linear-gradient(180deg, rgba(22,22,28,0.85), rgba(14,14,17,0.85));
-    }
-
-    .objection-box h2 {
-      margin: 0 0 18px;
-      font-size: 26px;
-      letter-spacing: -0.02em;
-    }
-
-    .objection-box p {
       margin: 0 0 14px;
-      font-size: 16px;
-      line-height: 1.75;
+      letter-spacing: -0.01em;
+    }
+
+    .panel {
+      border: 1px solid var(--border);
+      background: rgba(18,18,24,0.6);
+      border-radius: 16px;
+      padding: 22px;
+      backdrop-filter: blur(6px);
+    }
+
+    /* Manifest / problem */
+    .manifest {
+      display: grid;
+      gap: 10px;
+    }
+
+    .manifest .big {
+      font-size: 22px;
+      line-height: 1.5;
+      color: #e8e8ee;
+      letter-spacing: -0.01em;
+      margin: 0;
+    }
+
+    .manifest .small {
+      margin: 0;
       color: var(--muted);
+      line-height: 1.7;
+      font-size: 16px;
     }
 
-    .objection-box .highlight {
-      margin-top: 18px;
-      font-size: 17px;
-      color: #ffffff;
+    /* Cards grid */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
     }
 
-    /* CTA FINAL */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    @media (max-width: 900px){
+      .grid-3 { grid-template-columns: 1fr; }
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      position: relative;
+      border: 1px solid var(--border);
+      background: rgba(22,22,28,0.92);
+      border-radius: 16px;
+      padding: 18px;
+      overflow: hidden;
+      backdrop-filter: blur(6px);
+    }
+
+    /* subtle “circuit” lines */
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background:
+        radial-gradient(closest-side, rgba(140,140,255,0.10), transparent 65%),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: auto, 56px 56px, 56px 56px;
+      transform: rotate(8deg);
+      opacity: 0.45;
+      pointer-events:none;
+    }
+
+    .card > * { position: relative; }
+
+    .card .num {
+      position: absolute;
+      right: 14px;
+      top: 10px;
+      font-size: 44px;
+      font-weight: 900;
+      color: rgba(255,255,255,0.06);
+      letter-spacing: -0.04em;
+      user-select: none;
+      pointer-events:none;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      letter-spacing: 0.02em;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    /* For who */
+    .pill {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 16px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(22,22,28,0.75);
+      backdrop-filter: blur(6px);
+    }
+
+    .check {
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,0.18);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.9);
+      margin-top: 1px;
+      flex: 0 0 auto;
+    }
+
+    .pill span {
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    /* Final CTA */
     .final {
       text-align: center;
       padding: 34px 18px;
       border: 1px solid rgba(255,255,255,0.10);
       border-radius: 18px;
       background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(14,14,17,0));
+      backdrop-filter: blur(6px);
     }
 
-    .final h2 { font-size: 26px; margin-bottom: 10px; }
-    .final p { color: var(--muted); margin-bottom: 16px; }
+    .final h2 {
+      margin: 0 0 10px;
+      font-size: 26px;
+      letter-spacing: -0.02em;
+    }
+
+    .final p {
+      margin: 0 0 16px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 16px;
+    }
 
     .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       padding: 12px 16px;
       border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: transparent;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .btn.primary {
       background: var(--accent);
       color: var(--accentText);
-      font-weight: 800;
-      text-decoration: none;
+      border-color: transparent;
     }
+
+    .btn:hover { filter: brightness(1.05); }
 
     footer {
       margin-top: 64px;
@@ -209,58 +413,121 @@
 <body>
   <div class="container">
 
+    <!-- HERO -->
     <header class="hero">
       <div class="badge">IA • CLAREZA • DECISÃO</div>
 
-      <h1>Organize seus pensamentos.<br>Decida com mais clareza.</h1>
+      <h1>Organize seus pensamentos.<br/>Decida com mais clareza.</h1>
 
       <p class="lead">
-        O Flexihub é um espaço digital que transforma textos soltos em clareza estratégica.<br>
-        Você escreve livremente. O sistema organiza, prioriza e sugere próximos passos.
-      </p>
+  O Flexihub é um espaço digital que transforma textos soltos em clareza estratégica.<br>
+  Você escreve livremente. O sistema organiza, prioriza e sugere próximos passos.
+</p>
 
-      <div class="ai-preview">
+      <!-- AI PREVIEW -->
+      <div class="ai-preview" aria-label="Preview de análise">
         <div class="title">Preview • Análise Inteligente</div>
         <p><span>Resumo:</span> Você tem várias ideias em andamento, mas falta priorização.</p>
         <p><span>O que importa agora:</span> Definir o próximo passo com maior impacto.</p>
         <p><span>Sugestão:</span> Escolha uma ação simples que destrave o restante.</p>
       </div>
 
+      <!-- Form centralizado abaixo do texto -->
       <div class="form-wrap" id="waitlist">
         <div class="form-card">
-          <form action="https://formspree.io/f/xnjjndby" method="POST">
-            <input type="text" name="name" placeholder="Seu nome" required>
-            <input type="email" name="email" placeholder="Seu e-mail" required>
+          <p class="form-title">Acesso antecipado</p>
+
+          <form
+            id="waitlistForm"
+            action="https://formspree.io/f/xnjjndby"
+            method="POST"
+            class="form"
+          >
+            <div class="row">
+              <input type="text" name="name" placeholder="Seu nome" required />
+              <input type="email" name="email" placeholder="Seu e-mail" required />
+            </div>
+
             <button type="submit">Quero testar o Flexihub</button>
-            <p class="helper">Cadastre-se para receber acesso antecipado.</p>
+
+            <p class="helper">
+              Cadastre-se para receber acesso antecipado quando a plataforma estiver disponível.
+            </p>
+
+            <p id="successMsg" class="success" style="display:none;">
+              Cadastro recebido. Obrigado! 🚀
+            </p>
+
+            <p id="errorMsg" class="error" style="display:none;">
+              Ops… não consegui enviar agora. Tente novamente.
+            </p>
           </form>
         </div>
       </div>
     </header>
 
-    <!-- BLOCO DE OBJEÇÃO -->
+    <!-- PROBLEMA -->
     <section>
-      <div class="objection-box">
-        <h2>Mas por que usar o Flexihub se existem IAs gratuitas?</h2>
-
-        <p>Hoje, qualquer ferramenta de IA consegue organizar textos ou sugerir respostas.</p>
-
-        <p>
-          O problema é que essas ferramentas partem do pressuposto de que você já sabe o que
-          perguntar — e quando a mente está cheia, isso raramente é verdade.
+      <div class="panel manifest">
+        <p class="big">
+          Vivemos cercados de informações, tarefas e decisões.<br/>
+          O problema não é falta de produtividade — é excesso de ruído.
         </p>
-
-        <p>O Flexihub foi criado para o momento <strong>anterior à pergunta</strong>.</p>
-
-        <p>
-          Um espaço onde você escreve sem estrutura, sem prompt e sem esforço.
-          O sistema trabalha depois, transformando ruído mental em clareza estratégica.
+        <p class="small">
+          O Flexihub existe para reduzir esse ruído e ajudar você a pensar melhor antes de agir.
         </p>
+      </div>
+    </section>
 
-        <p class="highlight">
-          Não é sobre ter mais respostas.<br>
-          É sobre <strong>pensar melhor antes de decidir</strong>.
-        </p>
+    <!-- COMO FUNCIONA -->
+    <section>
+      <h2 class="section-title">Como funciona</h2>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="num">01</div>
+          <h3>Escreva</h3>
+          <p>Anote ideias, tarefas, dúvidas ou pensamentos — sem se preocupar em organizar.</p>
+        </div>
+
+        <div class="card">
+          <div class="num">02</div>
+          <h3>O Flexihub organiza</h3>
+          <p>O sistema identifica o que importa, elimina excessos e estrutura a informação.</p>
+        </div>
+
+        <div class="card">
+          <div class="num">03</div>
+          <h3>Decida melhor</h3>
+          <p>Você recebe clareza, foco e sugestões objetivas de próximos passos.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARA QUEM É -->
+    <section>
+      <h2 class="section-title">Para quem é</h2>
+
+      <div class="grid-2">
+        <div class="pill">
+          <div class="check">✓</div>
+          <span>Pessoas que lidam com muitas decisões</span>
+        </div>
+
+        <div class="pill">
+          <div class="check">✓</div>
+          <span>Quem sente a mente sempre “cheia”</span>
+        </div>
+
+        <div class="pill">
+          <div class="check">✓</div>
+          <span>Quem quer mais clareza, não mais ferramentas</span>
+        </div>
+
+        <div class="pill">
+          <div class="check">✓</div>
+          <span>Quem valoriza simplicidade e profundidade</span>
+        </div>
       </div>
     </section>
 
@@ -268,14 +535,52 @@
     <section class="final">
       <h2>Menos ruído. Mais clareza.</h2>
       <p>Entre na lista para receber acesso antecipado quando o Flexihub estiver disponível.</p>
-      <a class="btn" href="#waitlist">Entrar na lista</a>
+      <a class="btn primary" href="#waitlist">Entrar na lista</a>
     </section>
 
     <footer>
-      Flexihub ©<br>
+      Flexihub ©<br/>
       Menos ruído. Mais clareza.
     </footer>
-
   </div>
+
+  <!-- ENVIO DO FORM SEM RELOAD -->
+  <script>
+    const form = document.getElementById("waitlistForm");
+    const successMsg = document.getElementById("successMsg");
+    const errorMsg = document.getElementById("errorMsg");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      successMsg.style.display = "none";
+      errorMsg.style.display = "none";
+
+      const btn = form.querySelector("button");
+      btn.disabled = true;
+      const originalText = btn.textContent;
+      btn.textContent = "Enviando...";
+
+      try {
+        const formData = new FormData(form);
+        const res = await fetch(form.action, {
+          method: "POST",
+          body: formData,
+          headers: { "Accept": "application/json" }
+        });
+
+        if (res.ok) {
+          form.reset();
+          successMsg.style.display = "block";
+        } else {
+          errorMsg.style.display = "block";
+        }
+      } catch (err) {
+        errorMsg.style.display = "block";
+      } finally {
+        btn.disabled = false;
+        btn.textContent = originalText;
+      }
+    });
+  </script>
 </body>
 </html>
