@@ -18,6 +18,7 @@
       --accentText:#0e0e11;
       --ok:#9be9a8;
       --err:#ffb4b4;
+      --glow: rgba(120, 120, 255, 0.25);
     }
 
     * { box-sizing: border-box; }
@@ -26,142 +27,121 @@
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: radial-gradient(1200px 600px at 50% -10%, rgba(255,255,255,0.08), rgba(14,14,17,0)) , var(--bg);
+      background:
+        radial-gradient(800px 400px at 50% -10%, var(--glow), transparent),
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px),
+        var(--bg);
+      background-size:
+        auto,
+        48px 48px,
+        48px 48px,
+        auto;
       color: var(--text);
     }
 
     .container {
-      max-width: 980px;
+      max-width: 1080px;
       margin: 0 auto;
       padding: 80px 24px 64px;
     }
 
-    /* Top badge */
+    /* HERO */
+    .hero {
+      position: relative;
+      padding-bottom: 56px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
     .badge {
       display: inline-flex;
-      align-items: center;
       gap: 10px;
       padding: 10px 14px;
+      border-radius: 999px;
       border: 1px solid var(--border);
       background: rgba(18,18,24,0.7);
-      border-radius: 999px;
       color: var(--muted2);
       font-size: 12px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
     }
 
-    /* Hero */
-    .hero {
-      padding-bottom: 40px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      margin-bottom: 40px;
-    }
-
     h1 {
       margin: 18px 0 14px;
-      font-size: 52px;
+      font-size: 54px;
       line-height: 1.08;
       letter-spacing: -0.02em;
     }
 
     .lead {
-      margin: 0 0 22px;
       font-size: 18px;
       line-height: 1.7;
       color: var(--muted);
       max-width: 760px;
     }
 
-    .hero-actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin: 18px 0 10px;
+    /* AI PREVIEW CARD */
+    .ai-preview {
+      margin-top: 32px;
+      max-width: 520px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(28,28,40,0.95), rgba(18,18,24,0.95));
+      border: 1px solid rgba(140,140,255,0.35);
+      box-shadow: 0 0 60px rgba(120,120,255,0.25);
+      padding: 18px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 13px;
     }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px 16px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--text);
-      text-decoration: none;
+    .ai-preview .title {
+      color: #aab0ff;
       font-weight: 700;
-      font-size: 14px;
-      cursor: pointer;
+      margin-bottom: 10px;
+      letter-spacing: 0.08em;
+      font-size: 11px;
+      text-transform: uppercase;
     }
 
-    .btn.primary {
-      background: var(--accent);
-      color: var(--accentText);
-      border-color: transparent;
+    .ai-preview p {
+      margin: 6px 0;
+      color: #e6e7ff;
+      line-height: 1.5;
     }
 
-    .btn:hover { filter: brightness(1.05); }
+    .ai-preview span {
+      color: #9be9a8;
+    }
 
-    /* Form card */
+    /* FORM */
     .form-wrap {
-      margin-top: 22px;
+      margin-top: 28px;
       max-width: 520px;
     }
 
-    .form-card{
-      border: 1px solid var(--border);
-      background: linear-gradient(180deg, rgba(22,22,28,0.95), rgba(18,18,24,0.95));
+    .form-card {
+      background: linear-gradient(180deg, rgba(22,22,30,0.9), rgba(14,14,17,0.9));
       border-radius: 16px;
+      border: 1px solid var(--border);
       padding: 18px;
       box-shadow: 0 18px 60px rgba(0,0,0,0.45);
     }
 
-    .form-title{
-      font-size: 14px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted2);
-      margin: 0 0 10px;
-    }
-
-    form.form {
+    form {
       display: grid;
       gap: 12px;
     }
 
-    .row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    @media (max-width: 720px){
-      h1 { font-size: 40px; }
-      .row { grid-template-columns: 1fr; }
-      .container { padding-top: 64px; }
-    }
-
-    .form input {
+    input {
       padding: 14px;
       border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(14,14,17,0.55);
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(14,14,17,0.6);
       color: var(--text);
       font-size: 16px;
-      outline: none;
     }
 
-    .form input::placeholder { color: var(--muted2); }
-
-    .form input:focus {
-      border-color: rgba(255,255,255,0.26);
-      background: rgba(14,14,17,0.75);
-    }
-
-    .form button {
-      padding: 14px 16px;
+    button {
+      padding: 14px;
       border-radius: 12px;
       border: none;
       background: var(--accent);
@@ -171,166 +151,56 @@
       cursor: pointer;
     }
 
-    .form button:disabled { opacity: 0.6; cursor: not-allowed; }
-
     .helper {
       font-size: 13px;
       color: var(--muted2);
-      margin: 2px 0 0;
-      line-height: 1.5;
     }
 
-    .success { font-size: 13px; color: var(--ok); margin-top: 6px; }
-    .error { font-size: 13px; color: var(--err); margin-top: 6px; }
-
-    /* Sections */
+    /* SECTIONS */
     section {
-      margin: 44px 0;
+      margin: 64px 0;
     }
 
     .section-title {
-      font-size: 22px;
-      margin: 0 0 14px;
-      letter-spacing: -0.01em;
+      font-size: 24px;
+      margin-bottom: 18px;
     }
 
-    .panel {
-      border: 1px solid var(--border);
-      background: rgba(18,18,24,0.6);
-      border-radius: 16px;
-      padding: 22px;
-    }
-
-    /* Manifest / problem */
-    .manifest {
-      display: grid;
-      gap: 10px;
-    }
-
-    .manifest .big {
-      font-size: 22px;
-      line-height: 1.5;
-      color: #e8e8ee;
-      letter-spacing: -0.01em;
-      margin: 0;
-    }
-
-    .manifest .small {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.7;
-      font-size: 16px;
-    }
-
-    /* Cards grid */
     .grid-3 {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
-
-    @media (max-width: 900px){
-      .grid-3 { grid-template-columns: 1fr; }
-      .grid-2 { grid-template-columns: 1fr; }
+      gap: 16px;
     }
 
     .card {
-      position: relative;
-      border: 1px solid var(--border);
       background: var(--card);
       border-radius: 16px;
-      padding: 18px;
-      overflow: hidden;
-    }
-
-    .card .num {
-      position: absolute;
-      right: 14px;
-      top: 10px;
-      font-size: 44px;
-      font-weight: 900;
-      color: rgba(255,255,255,0.06);
-      letter-spacing: -0.04em;
-      user-select: none;
+      border: 1px solid var(--border);
+      padding: 20px;
     }
 
     .card h3 {
       margin: 0 0 8px;
       font-size: 16px;
-      letter-spacing: 0.02em;
     }
 
     .card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.7;
-      font-size: 15px;
-    }
-
-    /* For who */
-    .pill {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      padding: 16px;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      background: rgba(22,22,28,0.75);
-    }
-
-    .check {
-      width: 20px;
-      height: 20px;
-      border-radius: 6px;
-      border: 1px solid rgba(255,255,255,0.18);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: rgba(255,255,255,0.9);
-      margin-top: 1px;
-      flex: 0 0 auto;
-    }
-
-    .pill span {
       color: var(--muted);
       line-height: 1.6;
       font-size: 15px;
     }
 
-    /* Final CTA */
-    .final {
-      text-align: center;
-      padding: 34px 18px;
-      border: 1px solid rgba(255,255,255,0.10);
-      border-radius: 18px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(14,14,17,0));
-    }
-
-    .final h2 {
-      margin: 0 0 10px;
-      font-size: 26px;
-      letter-spacing: -0.02em;
-    }
-
-    .final p {
-      margin: 0 0 16px;
-      color: var(--muted);
-      line-height: 1.7;
-      font-size: 16px;
-    }
-
     footer {
       margin-top: 64px;
-      padding-top: 18px;
       border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 18px;
       font-size: 13px;
       color: var(--muted2);
+    }
+
+    @media (max-width: 900px){
+      h1 { font-size: 42px; }
+      .grid-3 { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -338,166 +208,60 @@
 <body>
   <div class="container">
 
-    <!-- HERO -->
     <header class="hero">
-      <div class="badge">CLAREZA • FOCO • DECISÃO</div>
+      <div class="badge">IA • CLAREZA • DECISÃO</div>
 
-      <h1>Organize seus pensamentos.<br/>Decida com mais clareza.</h1>
+      <h1>Organize seus pensamentos.<br>Decida com mais clareza.</h1>
 
       <p class="lead">
         O Flexihub é um espaço digital que transforma textos soltos em clareza acionável.
         Você escreve livremente. O sistema organiza, prioriza e sugere próximos passos.
       </p>
 
-      <!-- Form centralizado abaixo do texto -->
+      <!-- AI PREVIEW -->
+      <div class="ai-preview">
+        <div class="title">Preview • Análise Inteligente</div>
+        <p><span>Resumo:</span> Você tem várias ideias em andamento, mas falta priorização.</p>
+        <p><span>O que importa agora:</span> Definir o próximo passo com maior impacto.</p>
+        <p><span>Sugestão:</span> Escolha uma ação simples que destrave o restante.</p>
+      </div>
+
+      <!-- FORM -->
       <div class="form-wrap" id="waitlist">
         <div class="form-card">
-          <p class="form-title">Acesso antecipado</p>
-
-          <form
-            id="waitlistForm"
-            action="https://formspree.io/f/xnjjndby"
-            method="POST"
-            class="form"
-          >
-            <div class="row">
-              <input type="text" name="name" placeholder="Seu nome" required />
-              <input type="email" name="email" placeholder="Seu e-mail" required />
-            </div>
-
+          <form action="https://formspree.io/f/xnjjndby" method="POST">
+            <input type="text" name="name" placeholder="Seu nome" required>
+            <input type="email" name="email" placeholder="Seu e-mail" required>
             <button type="submit">Quero testar o Flexihub</button>
-
-            <p class="helper">
-              Cadastre-se para receber acesso antecipado quando a plataforma estiver disponível.
-            </p>
-
-            <p id="successMsg" class="success" style="display:none;">
-              Cadastro recebido. Obrigado! 🚀
-            </p>
-
-            <p id="errorMsg" class="error" style="display:none;">
-              Ops… não consegui enviar agora. Tente novamente.
-            </p>
+            <p class="helper">Cadastre-se para receber acesso antecipado.</p>
           </form>
         </div>
       </div>
     </header>
 
-    <!-- PROBLEMA (mesma copy, melhor ritmo) -->
-    <section>
-      <div class="panel manifest">
-        <p class="big">
-          Vivemos cercados de informações, tarefas e decisões.<br/>
-          O problema não é falta de produtividade — é excesso de ruído.
-        </p>
-        <p class="small">
-          O Flexihub existe para reduzir esse ruído e ajudar você a pensar melhor antes de agir.
-        </p>
-      </div>
-    </section>
-
-    <!-- COMO FUNCIONA -->
     <section>
       <h2 class="section-title">Como funciona</h2>
-
       <div class="grid-3">
         <div class="card">
-          <div class="num">01</div>
           <h3>Escreva</h3>
-          <p>Anote ideias, tarefas, dúvidas ou pensamentos — sem se preocupar em organizar.</p>
+          <p>Anote ideias, tarefas, dúvidas ou pensamentos sem se preocupar em organizar.</p>
         </div>
-
         <div class="card">
-          <div class="num">02</div>
           <h3>O Flexihub organiza</h3>
-          <p>O sistema identifica o que importa, elimina excessos e estrutura a informação.</p>
+          <p>O sistema identifica o que importa e elimina o excesso.</p>
         </div>
-
         <div class="card">
-          <div class="num">03</div>
           <h3>Decida melhor</h3>
-          <p>Você recebe clareza, foco e sugestões objetivas de próximos passos.</p>
+          <p>Você recebe clareza e sugestões objetivas de próximos passos.</p>
         </div>
       </div>
-    </section>
-
-    <!-- PARA QUEM É -->
-    <section>
-      <h2 class="section-title">Para quem é</h2>
-
-      <div class="grid-2">
-        <div class="pill">
-          <div class="check">✓</div>
-          <span>Pessoas que lidam com muitas decisões</span>
-        </div>
-
-        <div class="pill">
-          <div class="check">✓</div>
-          <span>Quem sente a mente sempre “cheia”</span>
-        </div>
-
-        <div class="pill">
-          <div class="check">✓</div>
-          <span>Quem quer mais clareza, não mais ferramentas</span>
-        </div>
-
-        <div class="pill">
-          <div class="check">✓</div>
-          <span>Quem valoriza simplicidade e profundidade</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA FINAL (botão que rola para o form) -->
-    <section class="final">
-      <h2>Menos ruído. Mais clareza.</h2>
-      <p>Entre na lista para receber acesso antecipado quando o Flexihub estiver disponível.</p>
-      <a class="btn primary" href="#waitlist">Entrar na lista</a>
     </section>
 
     <footer>
-      Flexihub ©<br/>
+      Flexihub ©<br>
       Menos ruído. Mais clareza.
     </footer>
+
   </div>
-
-  <!-- ENVIO DO FORM SEM RELOAD -->
-  <script>
-    const form = document.getElementById("waitlistForm");
-    const successMsg = document.getElementById("successMsg");
-    const errorMsg = document.getElementById("errorMsg");
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      successMsg.style.display = "none";
-      errorMsg.style.display = "none";
-
-      const btn = form.querySelector("button");
-      btn.disabled = true;
-      const originalText = btn.textContent;
-      btn.textContent = "Enviando...";
-
-      try {
-        const formData = new FormData(form);
-        const res = await fetch(form.action, {
-          method: "POST",
-          body: formData,
-          headers: { "Accept": "application/json" }
-        });
-
-        if (res.ok) {
-          form.reset();
-          successMsg.style.display = "block";
-        } else {
-          errorMsg.style.display = "block";
-        }
-      } catch (err) {
-        errorMsg.style.display = "block";
-      } finally {
-        btn.disabled = false;
-        btn.textContent = originalText;
-      }
-    });
-  </script>
 </body>
 </html>
