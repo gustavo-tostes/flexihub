@@ -1,127 +1,336 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Flexihub</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
+    :root{
+      --bg:#0e0e11;
+      --panel:#121218;
+      --card:#16161c;
+      --border:#24242d;
+      --text:#ffffff;
+      --muted:#cfcfd6;
+      --muted2:#8a8a93;
+      --accent:#ffffff;
+      --accentText:#0e0e11;
+      --ok:#9be9a8;
+      --err:#ffb4b4;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: #0e0e11;
-      color: #ffffff;
+      background: radial-gradient(1200px 600px at 50% -10%, rgba(255,255,255,0.08), rgba(14,14,17,0)) , var(--bg);
+      color: var(--text);
     }
 
     .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 80px 24px;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 80px 24px 64px;
+    }
+
+    /* Top badge */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      background: rgba(18,18,24,0.7);
+      border-radius: 999px;
+      color: var(--muted2);
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    /* Hero */
+    .hero {
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 40px;
     }
 
     h1 {
-      font-size: 42px;
-      line-height: 1.2;
-      margin-bottom: 16px;
+      margin: 18px 0 14px;
+      font-size: 52px;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
     }
 
-    h2 {
-      font-size: 26px;
-      margin-top: 56px;
-      margin-bottom: 16px;
-    }
-
-    p {
+    .lead {
+      margin: 0 0 22px;
       font-size: 18px;
-      line-height: 1.6;
-      color: #cfcfd6;
-      margin-bottom: 16px;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 760px;
     }
 
-    ul {
-      color: #cfcfd6;
-      font-size: 18px;
-      line-height: 1.6;
-      padding-left: 20px;
-    }
-
-    .steps {
-      margin-top: 48px;
-      display: grid;
-      gap: 24px;
-    }
-
-    .step {
-      background: #16161c;
-      padding: 24px;
-      border-radius: 12px;
-    }
-
-    /* FORMULÁRIO */
-    .form {
-      margin-top: 32px;
+    .hero-actions {
       display: flex;
-      flex-direction: column;
       gap: 12px;
-      max-width: 420px;
+      flex-wrap: wrap;
+      margin: 18px 0 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 16px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .btn.primary {
+      background: var(--accent);
+      color: var(--accentText);
+      border-color: transparent;
+    }
+
+    .btn:hover { filter: brightness(1.05); }
+
+    /* Form card */
+    .form-wrap {
+      margin-top: 22px;
+      max-width: 520px;
+    }
+
+    .form-card{
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(22,22,28,0.95), rgba(18,18,24,0.95));
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 18px 60px rgba(0,0,0,0.45);
+    }
+
+    .form-title{
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted2);
+      margin: 0 0 10px;
+    }
+
+    form.form {
+      display: grid;
+      gap: 12px;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 720px){
+      h1 { font-size: 40px; }
+      .row { grid-template-columns: 1fr; }
+      .container { padding-top: 64px; }
     }
 
     .form input {
       padding: 14px;
-      border-radius: 10px;
-      border: 1px solid #2a2a33;
-      background: #121218;
-      color: #ffffff;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(14,14,17,0.55);
+      color: var(--text);
       font-size: 16px;
       outline: none;
     }
 
-    .form input::placeholder {
-      color: #8a8a93;
-    }
+    .form input::placeholder { color: var(--muted2); }
 
     .form input:focus {
-      border-color: #4a4a5c;
+      border-color: rgba(255,255,255,0.26);
+      background: rgba(14,14,17,0.75);
     }
 
     .form button {
       padding: 14px 16px;
-      border-radius: 10px;
+      border-radius: 12px;
       border: none;
-      background: #ffffff;
-      color: #0e0e11;
-      font-weight: 700;
+      background: var(--accent);
+      color: var(--accentText);
+      font-weight: 800;
       font-size: 16px;
       cursor: pointer;
     }
 
-    .form button:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
+    .form button:disabled { opacity: 0.6; cursor: not-allowed; }
 
     .helper {
-      font-size: 14px;
-      color: #8a8a93;
-      margin-top: 4px;
+      font-size: 13px;
+      color: var(--muted2);
+      margin: 2px 0 0;
+      line-height: 1.5;
     }
 
-    .success {
-      font-size: 14px;
-      color: #9be9a8;
-      margin-top: 6px;
+    .success { font-size: 13px; color: var(--ok); margin-top: 6px; }
+    .error { font-size: 13px; color: var(--err); margin-top: 6px; }
+
+    /* Sections */
+    section {
+      margin: 44px 0;
     }
 
-    .error {
-      font-size: 14px;
-      color: #ffb4b4;
-      margin-top: 6px;
+    .section-title {
+      font-size: 22px;
+      margin: 0 0 14px;
+      letter-spacing: -0.01em;
+    }
+
+    .panel {
+      border: 1px solid var(--border);
+      background: rgba(18,18,24,0.6);
+      border-radius: 16px;
+      padding: 22px;
+    }
+
+    /* Manifest / problem */
+    .manifest {
+      display: grid;
+      gap: 10px;
+    }
+
+    .manifest .big {
+      font-size: 22px;
+      line-height: 1.5;
+      color: #e8e8ee;
+      letter-spacing: -0.01em;
+      margin: 0;
+    }
+
+    .manifest .small {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* Cards grid */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    @media (max-width: 900px){
+      .grid-3 { grid-template-columns: 1fr; }
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      position: relative;
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-radius: 16px;
+      padding: 18px;
+      overflow: hidden;
+    }
+
+    .card .num {
+      position: absolute;
+      right: 14px;
+      top: 10px;
+      font-size: 44px;
+      font-weight: 900;
+      color: rgba(255,255,255,0.06);
+      letter-spacing: -0.04em;
+      user-select: none;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      letter-spacing: 0.02em;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    /* For who */
+    .pill {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 16px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(22,22,28,0.75);
+    }
+
+    .check {
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,0.18);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.9);
+      margin-top: 1px;
+      flex: 0 0 auto;
+    }
+
+    .pill span {
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    /* Final CTA */
+    .final {
+      text-align: center;
+      padding: 34px 18px;
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(14,14,17,0));
+    }
+
+    .final h2 {
+      margin: 0 0 10px;
+      font-size: 26px;
+      letter-spacing: -0.02em;
+    }
+
+    .final p {
+      margin: 0 0 16px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 16px;
     }
 
     footer {
-      margin-top: 80px;
-      font-size: 14px;
-      color: #8a8a93;
+      margin-top: 64px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      font-size: 13px;
+      color: var(--muted2);
     }
   </style>
 </head>
@@ -129,84 +338,130 @@
 <body>
   <div class="container">
 
-    <h1>Organize seus pensamentos.<br>Decida com mais clareza.</h1>
+    <!-- HERO -->
+    <header class="hero">
+      <div class="badge">CLAREZA • FOCO • DECISÃO</div>
 
-    <p>
-      O Flexihub é um espaço digital que transforma textos soltos em clareza acionável.
-      Você escreve livremente. O sistema organiza, prioriza e sugere próximos passos.
-    </p>
+      <h1>Organize seus pensamentos.<br/>Decida com mais clareza.</h1>
 
-    <p>
-      Vivemos cercados de informações, tarefas e decisões.
-      O problema não é falta de produtividade — é excesso de ruído.
-    </p>
-
-    <p>
-      O Flexihub existe para reduzir esse ruído
-      e ajudar você a pensar melhor antes de agir.
-    </p>
-
-    <h2>Como funciona</h2>
-
-    <div class="steps">
-      <div class="step">
-        <strong>1. Escreva</strong>
-        <p>Anote ideias, tarefas, dúvidas ou pensamentos — sem se preocupar em organizar.</p>
-      </div>
-
-      <div class="step">
-        <strong>2. O Flexihub organiza</strong>
-        <p>O sistema identifica o que importa, elimina excessos e estrutura a informação.</p>
-      </div>
-
-      <div class="step">
-        <strong>3. Decida melhor</strong>
-        <p>Você recebe clareza, foco e sugestões objetivas de próximos passos.</p>
-      </div>
-    </div>
-
-    <h2>Para quem é</h2>
-
-    <ul>
-      <li>Pessoas que lidam com muitas decisões</li>
-      <li>Quem sente a mente sempre “cheia”</li>
-      <li>Quem quer mais clareza, não mais ferramentas</li>
-      <li>Quem valoriza simplicidade e profundidade</li>
-    </ul>
-
-    <!-- FORMULÁRIO EMBUTIDO -->
-    <form
-      id="waitlistForm"
-      action="https://formspree.io/f/xnjjndby"
-      method="POST"
-      class="form"
-    >
-      <input type="text" name="name" placeholder="Seu nome" required />
-      <input type="email" name="email" placeholder="Seu e-mail" required />
-
-      <button type="submit">Quero testar o Flexihub</button>
-
-      <p class="helper">
-        Cadastre-se para receber acesso antecipado quando a plataforma estiver disponível.
+      <p class="lead">
+        O Flexihub é um espaço digital que transforma textos soltos em clareza acionável.
+        Você escreve livremente. O sistema organiza, prioriza e sugere próximos passos.
       </p>
 
-      <p id="successMsg" class="success" style="display:none;">
-        Cadastro recebido. Obrigado! 🚀
-      </p>
+      <!-- Form centralizado abaixo do texto -->
+      <div class="form-wrap" id="waitlist">
+        <div class="form-card">
+          <p class="form-title">Acesso antecipado</p>
 
-      <p id="errorMsg" class="error" style="display:none;">
-        Ops… não consegui enviar agora. Tente novamente.
-      </p>
-    </form>
+          <form
+            id="waitlistForm"
+            action="https://formspree.io/f/SEU_ENDPOINT"
+            method="POST"
+            class="form"
+          >
+            <div class="row">
+              <input type="text" name="name" placeholder="Seu nome" required />
+              <input type="email" name="email" placeholder="Seu e-mail" required />
+            </div>
+
+            <button type="submit">Quero testar o Flexihub</button>
+
+            <p class="helper">
+              Cadastre-se para receber acesso antecipado quando a plataforma estiver disponível.
+            </p>
+
+            <p id="successMsg" class="success" style="display:none;">
+              Cadastro recebido. Obrigado! 🚀
+            </p>
+
+            <p id="errorMsg" class="error" style="display:none;">
+              Ops… não consegui enviar agora. Tente novamente.
+            </p>
+          </form>
+        </div>
+      </div>
+    </header>
+
+    <!-- PROBLEMA (mesma copy, melhor ritmo) -->
+    <section>
+      <div class="panel manifest">
+        <p class="big">
+          Vivemos cercados de informações, tarefas e decisões.<br/>
+          O problema não é falta de produtividade — é excesso de ruído.
+        </p>
+        <p class="small">
+          O Flexihub existe para reduzir esse ruído e ajudar você a pensar melhor antes de agir.
+        </p>
+      </div>
+    </section>
+
+    <!-- COMO FUNCIONA -->
+    <section>
+      <h2 class="section-title">Como funciona</h2>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="num">01</div>
+          <h3>Escreva</h3>
+          <p>Anote ideias, tarefas, dúvidas ou pensamentos — sem se preocupar em organizar.</p>
+        </div>
+
+        <div class="card">
+          <div class="num">02</div>
+          <h3>O Flexihub organiza</h3>
+          <p>O sistema identifica o que importa, elimina excessos e estrutura a informação.</p>
+        </div>
+
+        <div class="card">
+          <div class="num">03</div>
+          <h3>Decida melhor</h3>
+          <p>Você recebe clareza, foco e sugestões objetivas de próximos passos.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARA QUEM É -->
+    <section>
+      <h2 class="section-title">Para quem é</h2>
+
+      <div class="grid-2">
+        <div class="pill">
+          <div class="check">✓</div>
+          <span>Pessoas que lidam com muitas decisões</span>
+        </div>
+
+        <div class="pill">
+          <div class="check">✓</div>
+          <span>Quem sente a mente sempre “cheia”</span>
+        </div>
+
+        <div class="pill">
+          <div class="check">✓</div>
+          <span>Quem quer mais clareza, não mais ferramentas</span>
+        </div>
+
+        <div class="pill">
+          <div class="check">✓</div>
+          <span>Quem valoriza simplicidade e profundidade</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA FINAL (botão que rola para o form) -->
+    <section class="final">
+      <h2>Menos ruído. Mais clareza.</h2>
+      <p>Entre na lista para receber acesso antecipado quando o Flexihub estiver disponível.</p>
+      <a class="btn primary" href="#waitlist">Entrar na lista</a>
+    </section>
 
     <footer>
-      Flexihub ©<br>
+      Flexihub ©<br/>
       Menos ruído. Mais clareza.
     </footer>
-
   </div>
 
-  <!-- SCRIPT DE ENVIO SEM RELOAD -->
+  <!-- ENVIO DO FORM SEM RELOAD -->
   <script>
     const form = document.getElementById("waitlistForm");
     const successMsg = document.getElementById("successMsg");
@@ -219,6 +474,7 @@
 
       const btn = form.querySelector("button");
       btn.disabled = true;
+      const originalText = btn.textContent;
       btn.textContent = "Enviando...";
 
       try {
@@ -239,10 +495,9 @@
         errorMsg.style.display = "block";
       } finally {
         btn.disabled = false;
-        btn.textContent = "Quero testar o Flexihub";
+        btn.textContent = originalText;
       }
     });
   </script>
-
 </body>
 </html>
