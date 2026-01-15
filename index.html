@@ -18,6 +18,16 @@
       --accentText:#0e0e11;
       --ok:#9be9a8;
       --err:#ffb4b4;
+
+      /* Tech vibe */
+      --glowA: rgba(120,120,255,0.18);
+      --glowB: rgba(120,255,220,0.08);
+      --grid: rgba(255,255,255,0.03);
+      --aiBorder: rgba(140,140,255,0.35);
+      --aiGlow: rgba(120,120,255,0.22);
+      --aiText: #e6e7ff;
+      --aiLabel: #aab0ff;
+      --aiGood: #9be9a8;
     }
 
     * { box-sizing: border-box; }
@@ -26,12 +36,26 @@
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: radial-gradient(1200px 600px at 50% -10%, rgba(255,255,255,0.08), rgba(14,14,17,0)) , var(--bg);
+
+      /* Futuristic background: subtle glow + grid */
+      background:
+        radial-gradient(900px 420px at 50% -12%, var(--glowA), transparent 60%),
+        radial-gradient(700px 360px at 10% 10%, var(--glowB), transparent 60%),
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+        var(--bg);
+      background-size:
+        auto,
+        auto,
+        52px 52px,
+        52px 52px,
+        auto;
+
       color: var(--text);
     }
 
     .container {
-      max-width: 980px;
+      max-width: 1080px;
       margin: 0 auto;
       padding: 80px 24px 64px;
     }
@@ -49,10 +73,12 @@
       font-size: 12px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
+      backdrop-filter: blur(6px);
     }
 
     /* Hero */
     .hero {
+      position: relative;
       padding-bottom: 40px;
       border-bottom: 1px solid rgba(255,255,255,0.08);
       margin-bottom: 40px;
@@ -66,42 +92,45 @@
     }
 
     .lead {
-      margin: 0 0 22px;
+      margin: 0 0 12px;
       font-size: 18px;
       line-height: 1.7;
       color: var(--muted);
       max-width: 760px;
     }
 
-    .hero-actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin: 18px 0 10px;
+    /* AI preview card */
+    .ai-preview {
+      margin-top: 18px;
+      max-width: 520px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(28,28,40,0.95), rgba(18,18,24,0.95));
+      border: 1px solid var(--aiBorder);
+      box-shadow: 0 0 70px var(--aiGlow);
+      padding: 18px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 13px;
     }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px 16px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--text);
-      text-decoration: none;
+    .ai-preview .title {
+      color: var(--aiLabel);
+      font-weight: 800;
+      margin-bottom: 10px;
+      letter-spacing: 0.10em;
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+
+    .ai-preview p {
+      margin: 6px 0;
+      color: var(--aiText);
+      line-height: 1.5;
+    }
+
+    .ai-preview span {
+      color: var(--aiGood);
       font-weight: 700;
-      font-size: 14px;
-      cursor: pointer;
     }
-
-    .btn.primary {
-      background: var(--accent);
-      color: var(--accentText);
-      border-color: transparent;
-    }
-
-    .btn:hover { filter: brightness(1.05); }
 
     /* Form card */
     .form-wrap {
@@ -111,16 +140,17 @@
 
     .form-card{
       border: 1px solid var(--border);
-      background: linear-gradient(180deg, rgba(22,22,28,0.95), rgba(18,18,24,0.95));
+      background: linear-gradient(180deg, rgba(22,22,30,0.92), rgba(14,14,17,0.90));
       border-radius: 16px;
       padding: 18px;
       box-shadow: 0 18px 60px rgba(0,0,0,0.45);
+      backdrop-filter: blur(6px);
     }
 
     .form-title{
-      font-size: 14px;
+      font-size: 12px;
       font-weight: 800;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--muted2);
       margin: 0 0 10px;
@@ -144,7 +174,7 @@
     }
 
     .form input {
-      padding: 14px;
+      padding: 14px 14px;
       border-radius: 12px;
       border: 1px solid rgba(255,255,255,0.10);
       background: rgba(14,14,17,0.55);
@@ -199,6 +229,7 @@
       background: rgba(18,18,24,0.6);
       border-radius: 16px;
       padding: 22px;
+      backdrop-filter: blur(6px);
     }
 
     /* Manifest / problem */
@@ -243,11 +274,29 @@
     .card {
       position: relative;
       border: 1px solid var(--border);
-      background: var(--card);
+      background: rgba(22,22,28,0.92);
       border-radius: 16px;
       padding: 18px;
       overflow: hidden;
+      backdrop-filter: blur(6px);
     }
+
+    /* subtle “circuit” lines */
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background:
+        radial-gradient(closest-side, rgba(140,140,255,0.10), transparent 65%),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: auto, 56px 56px, 56px 56px;
+      transform: rotate(8deg);
+      opacity: 0.45;
+      pointer-events:none;
+    }
+
+    .card > * { position: relative; }
 
     .card .num {
       position: absolute;
@@ -258,6 +307,7 @@
       color: rgba(255,255,255,0.06);
       letter-spacing: -0.04em;
       user-select: none;
+      pointer-events:none;
     }
 
     .card h3 {
@@ -282,6 +332,7 @@
       border-radius: 14px;
       border: 1px solid var(--border);
       background: rgba(22,22,28,0.75);
+      backdrop-filter: blur(6px);
     }
 
     .check {
@@ -310,6 +361,7 @@
       border: 1px solid rgba(255,255,255,0.10);
       border-radius: 18px;
       background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(14,14,17,0));
+      backdrop-filter: blur(6px);
     }
 
     .final h2 {
@@ -324,6 +376,29 @@
       line-height: 1.7;
       font-size: 16px;
     }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: transparent;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .btn.primary {
+      background: var(--accent);
+      color: var(--accentText);
+      border-color: transparent;
+    }
+
+    .btn:hover { filter: brightness(1.05); }
 
     footer {
       margin-top: 64px;
@@ -340,14 +415,25 @@
 
     <!-- HERO -->
     <header class="hero">
-      <div class="badge">CLAREZA • FOCO • DECISÃO</div>
+      <div class="badge">IA • CLAREZA • DECISÃO</div>
 
       <h1>Organize seus pensamentos.<br/>Decida com mais clareza.</h1>
 
       <p class="lead">
-        O Flexihub é um espaço digital que transforma textos soltos em clareza acionável.
+        O Flexihub é um espaço digital que transforma textos soltos em clareza estratégica.
+      </p>
+
+      <p class="lead">
         Você escreve livremente. O sistema organiza, prioriza e sugere próximos passos.
       </p>
+
+      <!-- AI PREVIEW -->
+      <div class="ai-preview" aria-label="Preview de análise">
+        <div class="title">Preview • Análise Inteligente</div>
+        <p><span>Resumo:</span> Você tem várias ideias em andamento, mas falta priorização.</p>
+        <p><span>O que importa agora:</span> Definir o próximo passo com maior impacto.</p>
+        <p><span>Sugestão:</span> Escolha uma ação simples que destrave o restante.</p>
+      </div>
 
       <!-- Form centralizado abaixo do texto -->
       <div class="form-wrap" id="waitlist">
@@ -383,7 +469,7 @@
       </div>
     </header>
 
-    <!-- PROBLEMA (mesma copy, melhor ritmo) -->
+    <!-- PROBLEMA -->
     <section>
       <div class="panel manifest">
         <p class="big">
@@ -448,7 +534,7 @@
       </div>
     </section>
 
-    <!-- CTA FINAL (botão que rola para o form) -->
+    <!-- CTA FINAL -->
     <section class="final">
       <h2>Menos ruído. Mais clareza.</h2>
       <p>Entre na lista para receber acesso antecipado quando o Flexihub estiver disponível.</p>
