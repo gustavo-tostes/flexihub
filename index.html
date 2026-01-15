@@ -16,8 +16,6 @@
       --muted2:#8a8a93;
       --accent:#ffffff;
       --accentText:#0e0e11;
-      --ok:#9be9a8;
-      --err:#ffb4b4;
       --glow: rgba(120, 120, 255, 0.25);
     }
 
@@ -46,9 +44,7 @@
       padding: 80px 24px 64px;
     }
 
-    /* HERO */
     .hero {
-      position: relative;
       padding-bottom: 56px;
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
@@ -78,11 +74,11 @@
       line-height: 1.7;
       color: var(--muted);
       max-width: 760px;
+      margin-bottom: 12px;
     }
 
-    /* AI PREVIEW CARD */
     .ai-preview {
-      margin-top: 32px;
+      margin-top: 28px;
       max-width: 520px;
       border-radius: 16px;
       background: linear-gradient(180deg, rgba(28,28,40,0.95), rgba(18,18,24,0.95));
@@ -112,7 +108,6 @@
       color: #9be9a8;
     }
 
-    /* FORM */
     .form-wrap {
       margin-top: 28px;
       max-width: 520px;
@@ -156,38 +151,8 @@
       color: var(--muted2);
     }
 
-    /* SECTIONS */
     section {
       margin: 64px 0;
-    }
-
-    .section-title {
-      font-size: 24px;
-      margin-bottom: 18px;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .card {
-      background: var(--card);
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      padding: 20px;
-    }
-
-    .card h3 {
-      margin: 0 0 8px;
-      font-size: 16px;
-    }
-
-    .card p {
-      color: var(--muted);
-      line-height: 1.6;
-      font-size: 15px;
     }
 
     footer {
@@ -200,7 +165,6 @@
 
     @media (max-width: 900px){
       h1 { font-size: 42px; }
-      .grid-3 { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -214,11 +178,13 @@
       <h1>Organize seus pensamentos.<br>Decida com mais clareza.</h1>
 
       <p class="lead">
-        O Flexihub é um espaço digital que transforma textos soltos em clareza acionável.
+        O Flexihub é um espaço digital que transforma textos soltos em clareza estratégica.
+      </p>
+
+      <p class="lead">
         Você escreve livremente. O sistema organiza, prioriza e sugere próximos passos.
       </p>
 
-      <!-- AI PREVIEW -->
       <div class="ai-preview">
         <div class="title">Preview • Análise Inteligente</div>
         <p><span>Resumo:</span> Você tem várias ideias em andamento, mas falta priorização.</p>
@@ -226,8 +192,7 @@
         <p><span>Sugestão:</span> Escolha uma ação simples que destrave o restante.</p>
       </div>
 
-      <!-- FORM -->
-      <div class="form-wrap" id="waitlist">
+      <div class="form-wrap">
         <div class="form-card">
           <form action="https://formspree.io/f/xnjjndby" method="POST">
             <input type="text" name="name" placeholder="Seu nome" required>
@@ -238,24 +203,6 @@
         </div>
       </div>
     </header>
-
-    <section>
-      <h2 class="section-title">Como funciona</h2>
-      <div class="grid-3">
-        <div class="card">
-          <h3>Escreva</h3>
-          <p>Anote ideias, tarefas, dúvidas ou pensamentos sem se preocupar em organizar.</p>
-        </div>
-        <div class="card">
-          <h3>O Flexihub organiza</h3>
-          <p>O sistema identifica o que importa e elimina o excesso.</p>
-        </div>
-        <div class="card">
-          <h3>Decida melhor</h3>
-          <p>Você recebe clareza e sugestões objetivas de próximos passos.</p>
-        </div>
-      </div>
-    </section>
 
     <footer>
       Flexihub ©<br>
