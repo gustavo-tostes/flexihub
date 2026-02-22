@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Flexihub — TVs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    :root{
+      --bg:#0e0e11;
+      --panel:#121218;
+      --card:#16161c;
+      --border:#24242d;
+      --text:#ffffff;
+      --muted:#cfcfd6;
+      --muted2:#8a8a93;
+      --accent:#ffffff;
+      --accentText:#0e0e11;
+
+      --glowA: rgba(120,120,255,0.18);
+      --glowB: rgba(120,255,220,0.08);
+      --grid: rgba(255,255,255,0.03);
+
+      --ctaBg: rgba(255,255,255,0.08);
+      --ctaBorder: rgba(255,255,255,0.16);
+
+      --aiBorder: rgba(140,140,255,0.35);
+      --aiGlow: rgba(120,120,255,0.20);
+
+      --okBg: rgba(155,233,168,0.10);
+      --okBorder: rgba(155,233,168,0.22);
+      --okText: rgba(155,233,168,0.95);
+
+      --warnBg: rgba(255,255,255,0.06);
+      --warnBorder: rgba(255,255,255,0.12);
+      --warnText: rgba(255,255,255,0.72);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background:
+        radial-gradient(900px 420px at 50% -12%, var(--glowA), transparent 60%),
+        radial-gradient(700px 360px at 10% 10%, var(--glowB), transparent 60%),
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+        var(--bg);
+      background-size: auto, auto, 52px 52px, 52px 52px, auto;
+      color: var(--text);
+    }
+
+    .container { max-width: 1080px; margin: 0 auto; padding: 72px 24px 64px; }
+
+    /* Topbar */
+    .topbar{ display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom: 18px; }
+    .brand{ display:flex; align-items:center; gap:10px; text-decoration:none; color: var(--text); font-weight: 900; letter-spacing: -0.02em; }
+    .dot{ width:10px; height:10px; border-radius: 999px; background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.35)); box-shadow: 0 0 28px rgba(140,140,255,0.35); }
+    .navlinks{ display:flex; gap:10px; align-items:center; flex-wrap: wrap; justify-content:flex-end; }
+    .link{
+      color: var(--muted); text-decoration:none; font-size:14px;
+      padding: 8px 10px; border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(18,18,24,0.35);
+      backdrop-filter: blur(6px);
+      transition: filter .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .link:hover{ filter: brightness(1.08); }
+    .link.cta{ color: var(--text); background: var(--ctaBg); border-color: var(--ctaBorder); box-shadow: 0 0 40px rgba(140,140,255,0.12); }
+    .link.cta:hover{ filter: brightness(1.12); background: rgba(255,255,255,0.10); border-color: rgba(255,255,255,0.22); }
+
+    /* Breadcrumb */
+    .crumbs{ display:flex; align-items:center; gap:8px; font-size: 13px; color: rgba(255,255,255,0.55); margin-bottom: 14px; }
+    .crumbs a{ color: rgba(255,255,255,0.70); text-decoration:none; border-bottom: 1px solid rgba(255,255,255,0.10); padding-bottom: 1px; }
+    .crumbs a:hover{ color: rgba(255,255,255,0.90); border-bottom-color: rgba(255,255,255,0.22); }
+    .crumbs .sep{ opacity: 0.45; }
+    .crumbs .current{ color: rgba(255,255,255,0.78); }
+
+    h1{ margin: 6px 0 10px; font-size: 44px; line-height: 1.1; letter-spacing: -0.03em; }
+    .lead{ margin: 0 0 18px; color: var(--muted); line-height: 1.7; font-size: 16px; max-width: 860px; }
+
+    /* Layout */
+    .grid{ display:grid; grid-template-columns: 1.1fr 0.9fr; gap: 14px; align-items:start; }
+    @media (max-width: 900px){ .grid{ grid-template-columns: 1fr; } }
+    @media (max-width: 620px){ h1{ font-size: 36px; } .container{ padding-top: 56px; } }
+
+    .panel{
+      border: 1px solid var(--border);
+      background: rgba(18,18,24,0.60);
+      border-radius: 16px;
+      padding: 18px;
+      backdrop-filter: blur(6px);
+      overflow:hidden;
+      position:relative;
+    }
+
+    .panel::before{
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background:
+        radial-gradient(closest-side, rgba(140,140,255,0.10), transparent 65%),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: auto, 56px 56px, 56px 56px;
+      transform: rotate(8deg);
+      opacity: 0.40;
+      pointer-events:none;
+    }
+    .panel > *{ position:relative; }
+
+    .section-title{ margin: 0 0 10px; font-size: 16px; letter-spacing: 0.02em; color: rgba(255,255,255,0.92); }
+
+    /* Scenario buttons */
+    .scenarios{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 10px; }
+    @media (max-width: 520px){ .scenarios{ grid-template-columns: 1fr; } }
+
+    .scenario-btn{
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(14,14,17,0.45);
+      color: rgba(255,255,255,0.90);
+      border-radius: 14px;
+      padding: 12px 12px;
+      text-align:left;
+      cursor:pointer;
+      transition: filter .15s ease, border-color .15s ease, transform .15s ease;
+      font-weight: 800;
+      font-size: 14px;
+    }
+    .scenario-btn:hover{ filter: brightness(1.08); transform: translateY(-1px); border-color: rgba(255,255,255,0.16); }
+    .scenario-btn small{ display:block; margin-top: 6px; color: rgba(255,255,255,0.60); font-weight: 600; line-height: 1.4; }
+
+    /* Decision card */
+    .decision{
+      border: 1px solid var(--aiBorder);
+      box-shadow: 0 0 70px var(--aiGlow);
+      background: linear-gradient(180deg, rgba(28,28,40,0.95), rgba(18,18,24,0.90));
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(18,18,24,0.45);
+      color: rgba(255,255,255,0.72);
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .product-title{ margin: 2px 0 6px; font-size: 22px; letter-spacing: -0.02em; }
+    .product-sub{ margin: 0 0 12px; color: rgba(255,255,255,0.75); line-height: 1.6; font-size: 14px; }
+
+    .why{
+      display:grid;
+      gap:8px;
+      margin: 12px 0 14px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .why .item{
+      display:flex; gap:10px; align-items:flex-start;
+      color: rgba(255,255,255,0.78);
+      font-size: 14px; line-height: 1.6;
+    }
+    .tick{
+      width: 18px; height: 18px; border-radius: 6px;
+      border: 1px solid rgba(255,255,255,0.16);
+      display:flex; align-items:center; justify-content:center;
+      color: rgba(255,255,255,0.95);
+      flex: 0 0 auto;
+      margin-top: 2px;
+    }
+
+    .chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top: 10px; }
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 6px 10px; border-radius: 999px;
+      font-size: 12px; border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.74);
+    }
+    .chip.ok{ background: var(--okBg); border-color: var(--okBorder); color: var(--okText); }
+    .chip.warn{ background: var(--warnBg); border-color: var(--warnBorder); color: var(--warnText); }
+
+    /* Buy buttons */
+    .buy-row{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 14px; }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: transparent;
+      color: var(--text);
+      text-decoration:none;
+      font-weight: 900;
+      font-size: 14px;
+      cursor:pointer;
+    }
+    .btn.primary{ background: var(--accent); color: var(--accentText); border-color: transparent; }
+    .btn:hover{ filter: brightness(1.05); }
+
+    footer { margin-top: 64px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 13px; color: var(--muted2); }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="topbar">
+      <a class="brand" href="/">
+        <span class="dot"></span>
+        <span>Flexihub</span>
+      </a>
+
+      <div class="navlinks">
+        <a class="link" href="/categorias/">Categorias</a>
+        <a class="link" href="/#como-funciona">Como funciona</a>
+        <a class="link cta" href="/sugestoes/">Sugestões</a>
+      </div>
+    </div>
+
+    <div class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span class="sep">/</span>
+      <a href="/categorias/">Categorias</a>
+      <span class="sep">/</span>
+      <span class="current">TVs</span>
+    </div>
+
+    <h1>TVs</h1>
+    <p class="lead">
+      Escolha o cenário (ou o tipo de sala). A Flexihub entrega uma decisão final — e você compra onde preferir.
+    </p>
+
+    <div class="grid">
+
+      <!-- LEFT -->
+      <div class="panel">
+        <div class="section-title">Selecione o cenário</div>
+
+        <div class="scenarios">
+          <button class="scenario-btn" data-scenario="quarto">
+            Quarto / pequeno
+            <small>Conforto em ambientes menores, bom custo-benefício.</small>
+          </button>
+
+          <button class="scenario-btn" data-scenario="sala">
+            Sala / principal
+            <small>Experiência completa para filmes e séries.</small>
+          </button>
+
+          <button class="scenario-btn" data-scenario="games">
+            Games (console)
+            <small>Fluidez e recursos certos para jogar.</small>
+          </button>
+
+          <button class="scenario-btn" data-scenario="economia">
+            Mais barata que vale
+            <small>O mínimo que ainda entrega boa experiência.</small>
+          </button>
+        </div>
+
+        <div class="panel" style="margin-top:14px;">
+          <p style="margin:0; color:rgba(255,255,255,0.62); font-size:13px; line-height:1.7;">
+            Quando você definir os modelos reais (ex.: 43", 50", 55"), eu fixo a “decisão final” e coloco os links nas lojas.
+          </p>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="panel decision" id="decisionCard">
+        <div class="badge">Decisão final • TVs</div>
+
+        <div class="product-title" id="prodTitle">Selecione um cenário à esquerda</div>
+        <div class="product-sub" id="prodSub">
+          Assim que você escolher, a Flexihub mostra um modelo recomendado e o porquê.
+        </div>
+
+        <div class="why" id="whyList" style="display:none;">
+          <div class="item"><div class="tick">✓</div><div id="why1"></div></div>
+          <div class="item"><div class="tick">✓</div><div id="why2"></div></div>
+          <div class="item"><div class="tick">✓</div><div id="why3"></div></div>
+        </div>
+
+        <div class="chips" id="chips" style="display:none;">
+          <span class="chip ok" id="chip1"></span>
+          <span class="chip" id="chip2"></span>
+          <span class="chip warn" id="chip3"></span>
+        </div>
+
+        <div class="buy-row" id="buyRow" style="display:none;">
+          <a class="btn primary" id="buyAmazon" href="#" target="_blank" rel="noopener">Comprar na Amazon</a>
+          <a class="btn" id="buyML" href="#" target="_blank" rel="noopener">Mercado Livre</a>
+          <a class="btn" id="buyShopee" href="#" target="_blank" rel="noopener">Shopee</a>
+        </div>
+      </div>
+
+    </div>
+
+    <footer>
+      Flexihub ©<br/>
+      A decisão final, sem ruído.
+    </footer>
+  </div>
+
+  <script>
+    const scenarios = {
+      quarto: {
+        title: "Modelo recomendado (Quarto/pequeno): [definir]",
+        sub: "Tamanho certo + imagem boa, sem pagar por excesso.",
+        why: [
+          "Dimensão ideal para distância curta e ambiente menor.",
+          "Boa qualidade de imagem para séries e YouTube.",
+          "Sistema smart consistente e fácil."
+        ],
+        chips: ["Tamanho certo", "Imagem boa", "Evite muito grande no quarto"],
+        links: { amazon:"#", ml:"#", shopee:"#" }
+      },
+      sala: {
+        title: "Modelo recomendado (Sala/principal): [definir]",
+        sub: "Experiência completa: imagem, contraste e fluidez para o uso principal.",
+        why: [
+          "Boa imagem para filmes e séries (principalmente à noite).",
+          "Tamanho que preenche a sala sem exagero.",
+          "Sistema smart e conectividade sólida."
+        ],
+        chips: ["Experiência", "Equilíbrio", "Evite modelos básicos demais"],
+        links: { amazon:"#", ml:"#", shopee:"#" }
+      },
+      games: {
+        title: "Modelo recomendado (Games/console): [definir]",
+        sub: "Foco em fluidez e recursos que fazem diferença no console.",
+        why: [
+          "Boa fluidez e menor sensação de atraso.",
+          "Recursos úteis para jogos (dependendo do modelo).",
+          "Imagem consistente em cenas rápidas."
+        ],
+        chips: ["Fluidez", "Jogos", "Evite input lag alto"],
+        links: { amazon:"#", ml:"#", shopee:"#" }
+      },
+      economia: {
+        title: "Modelo recomendado (Mais barata que vale): [definir]",
+        sub: "O mínimo inteligente: não é a mais barata, é a que vale.",
+        why: [
+          "Imagem decente sem defeitos gritantes.",
+          "Boa experiência smart e conectividade.",
+          "O melhor “barato que não sai caro”."
+        ],
+        chips: ["Vale o preço", "Sem dor de cabeça", "Evite TV genérica"],
+        links: { amazon:"#", ml:"#", shopee:"#" }
+      }
+    };
+
+    const titleEl = document.getElementById("prodTitle");
+    const subEl = document.getElementById("prodSub");
+    const whyWrap = document.getElementById("whyList");
+    const chipsWrap = document.getElementById("chips");
+    const buyRow = document.getElementById("buyRow");
+
+    const why1 = document.getElementById("why1");
+    const why2 = document.getElementById("why2");
+    const why3 = document.getElementById("why3");
+
+    const chip1 = document.getElementById("chip1");
+    const chip2 = document.getElementById("chip2");
+    const chip3 = document.getElementById("chip3");
+
+    const buyAmazon = document.getElementById("buyAmazon");
+    const buyML = document.getElementById("buyML");
+    const buyShopee = document.getElementById("buyShopee");
+
+    document.querySelectorAll(".scenario-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const key = btn.dataset.scenario;
+        const data = scenarios[key];
+
+        titleEl.textContent = data.title;
+        subEl.textContent = data.sub;
+
+        why1.textContent = data.why[0];
+        why2.textContent = data.why[1];
+        why3.textContent = data.why[2];
+
+        chip1.textContent = data.chips[0];
+        chip2.textContent = data.chips[1];
+        chip3.textContent = data.chips[2];
+
+        buyAmazon.href = data.links.amazon;
+        buyML.href = data.links.ml;
+        buyShopee.href = data.links.shopee;
+
+        whyWrap.style.display = "grid";
+        chipsWrap.style.display = "flex";
+        buyRow.style.display = "flex";
+      });
+    });
+  </script>
+</body>
+</html>
