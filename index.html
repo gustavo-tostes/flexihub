@@ -59,26 +59,26 @@
     /* Top nav */
     .topbar{
       display:flex;
-      align-items:flex-start; /* ✅ aguenta logo grande sem “achatar” */
+      align-items:center;
       justify-content:space-between;
       gap:16px;
-      margin-bottom: 10px;
+      margin-bottom: 10px; /* ✅ reduz o “buraco” antes do badge */
     }
 
     .brand{
       display:flex;
-      align-items:flex-start;
+      align-items:center;
       text-decoration:none;
-      line-height:0;
     }
 
-    /* ✅ Logo MUITO maior */
+    /* ✅ Logo: alinhada certinho com o conteúdo (sem margin negativo)
+       ✅ Aumenta presença com scale pra compensar transparência do PNG */
     .brand-logo{
-      height: 120px;          /* ✅ maior (antes 46px) */
+      height: 120px;    /* ✅ tamanho base */
       width: auto;
       display:block;
-      transform: scale(2.2);  /* ✅ “40x” na prática: bem grande */
-      transform-origin: left top;
+      transform: scale(1.18);        /* ✅ deixa maior sem “estourar” altura da topbar */
+      transform-origin: left center; /* ✅ cresce pra direita, mantendo alinhamento à esquerda */
     }
 
     .navlinks{
@@ -87,7 +87,6 @@
       align-items:center;
       flex-wrap: wrap;
       justify-content:flex-end;
-      padding-top: 10px; /* ✅ mantém os botões bem alinhados ao topo */
     }
 
     .link{
@@ -384,8 +383,8 @@
       .container { padding-top: 56px; }
 
       .brand-logo{
-        height: 78px;
-        transform: scale(1.8);
+        height: 40px;
+        transform: scale(1.12);
       }
     }
   </style>
