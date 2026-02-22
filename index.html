@@ -16,8 +16,6 @@
       --muted2:#8a8a93;
       --accent:#ffffff;
       --accentText:#0e0e11;
-      --ok:#9be9a8;
-      --err:#ffb4b4;
 
       /* Tech vibe */
       --glowA: rgba(120,120,255,0.18);
@@ -28,6 +26,10 @@
       --aiText: #e6e7ff;
       --aiLabel: #aab0ff;
       --aiGood: #9be9a8;
+
+      /* CTA subtle */
+      --ctaBg: rgba(255,255,255,0.08);
+      --ctaBorder: rgba(255,255,255,0.16);
     }
 
     * { box-sizing: border-box; }
@@ -98,8 +100,22 @@
       border: 1px solid rgba(255,255,255,0.08);
       background: rgba(18,18,24,0.35);
       backdrop-filter: blur(6px);
+      transition: filter .15s ease, background .15s ease, border-color .15s ease;
     }
     .link:hover{ filter: brightness(1.08); }
+
+    /* Subtle CTA link */
+    .link.cta{
+      color: var(--text);
+      background: var(--ctaBg);
+      border-color: var(--ctaBorder);
+      box-shadow: 0 0 40px rgba(140,140,255,0.12);
+    }
+    .link.cta:hover{
+      filter: brightness(1.12);
+      background: rgba(255,255,255,0.10);
+      border-color: rgba(255,255,255,0.22);
+    }
 
     /* Badge */
     .badge {
@@ -336,7 +352,7 @@
       <div class="navlinks">
         <a class="link" href="#categorias">Categorias</a>
         <a class="link" href="#como-funciona">Como funciona</a>
-        <a class="link" href="/sugestoes/">Sugestões</a>
+        <a class="link cta" href="/sugestoes/">Sugestões</a>
       </div>
     </div>
 
