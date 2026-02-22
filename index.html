@@ -300,83 +300,6 @@
     .step h3{ margin: 0 0 8px; font-size:16px; }
     .step p { margin:0; color: var(--muted); line-height:1.7; font-size:15px; }
 
-    /* Form */
-    .form-wrap { margin-top: 10px; max-width: 560px; }
-    .form-card{
-      border: 1px solid var(--border);
-      background: linear-gradient(180deg, rgba(22,22,30,0.92), rgba(14,14,17,0.90));
-      border-radius: 16px;
-      padding: 18px;
-      box-shadow: 0 18px 60px rgba(0,0,0,0.45);
-      backdrop-filter: blur(6px);
-    }
-
-    .form-title{
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted2);
-      margin: 0 0 10px;
-    }
-
-    form.form {
-      display: grid;
-      gap: 12px;
-    }
-
-    .row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    @media (max-width: 720px){
-      h1 { font-size: 40px; }
-      .container { padding-top: 56px; }
-      .row { grid-template-columns: 1fr; }
-    }
-
-    .form input {
-      padding: 14px 14px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(14,14,17,0.55);
-      color: var(--text);
-      font-size: 16px;
-      outline: none;
-    }
-
-    .form input::placeholder { color: var(--muted2); }
-
-    .form input:focus {
-      border-color: rgba(255,255,255,0.26);
-      background: rgba(14,14,17,0.75);
-    }
-
-    .form button {
-      padding: 14px 16px;
-      border-radius: 12px;
-      border: none;
-      background: var(--accent);
-      color: var(--accentText);
-      font-weight: 800;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    .form button:disabled { opacity: 0.6; cursor: not-allowed; }
-
-    .helper {
-      font-size: 13px;
-      color: var(--muted2);
-      margin: 2px 0 0;
-      line-height: 1.5;
-    }
-
-    .success { font-size: 13px; color: var(--ok); margin-top: 6px; }
-    .error { font-size: 13px; color: var(--err); margin-top: 6px; }
-
     .fineprint{
       margin-top: 8px;
       color: rgba(255,255,255,0.45);
@@ -391,6 +314,11 @@
       border-top: 1px solid rgba(255,255,255,0.08);
       font-size: 13px;
       color: var(--muted2);
+    }
+
+    @media (max-width: 720px){
+      h1 { font-size: 40px; }
+      .container { padding-top: 56px; }
     }
   </style>
 </head>
@@ -408,7 +336,7 @@
       <div class="navlinks">
         <a class="link" href="#categorias">Categorias</a>
         <a class="link" href="#como-funciona">Como funciona</a>
-        <a class="link" href="#sugestoes">Sugestões</a>
+        <a class="link" href="/sugestoes/">Sugestões</a>
       </div>
     </div>
 
@@ -428,7 +356,7 @@
 
       <div class="cta-row">
         <a class="btn primary" href="#categorias">Ver categorias</a>
-        <a class="btn" href="#sugestoes">Sugerir categoria</a>
+        <a class="btn" href="/sugestoes/">Sugerir categoria</a>
       </div>
 
       <div class="ai-preview" aria-label="Preview de recomendação">
@@ -467,6 +395,10 @@
         A Flexihub começa com poucas categorias por uma razão: autoridade nasce de consistência.
         Conforme os cenários forem validados, novas categorias entram.
       </p>
+
+      <p class="fineprint">
+        Transparência: links podem ser de afiliado. Isso não muda a decisão — só sustenta o projeto.
+      </p>
     </section>
 
     <!-- COMO FUNCIONA -->
@@ -494,94 +426,10 @@
       </div>
     </section>
 
-    <!-- SUGESTÕES -->
-    <section id="sugestoes">
-      <h2 class="section-title">Sugira uma nova categoria</h2>
-
-      <div class="form-wrap">
-        <div class="form-card">
-          <p class="form-title">Nova categoria</p>
-
-          <form
-            id="suggestForm"
-            action="https://formspree.io/f/xnjjndby"
-            method="POST"
-            class="form"
-          >
-            <div class="row">
-              <input type="text" name="name" placeholder="Seu nome (opcional)" />
-              <input type="email" name="email" placeholder="Seu e-mail (opcional)" />
-            </div>
-
-            <input type="text" name="category" placeholder="Qual categoria você gostaria de ver na Flexihub?" required />
-
-            <button type="submit">Enviar sugestão</button>
-
-            <p class="helper">
-              Sua sugestão ajuda a definir as próximas decisões da Flexihub.
-            </p>
-
-            <p id="successMsg" class="success" style="display:none;">
-              Sugestão recebida. Obrigado! 🚀
-            </p>
-
-            <p id="errorMsg" class="error" style="display:none;">
-              Ops… não consegui enviar agora. Tente novamente.
-            </p>
-          </form>
-        </div>
-      </div>
-
-      <p class="fineprint">
-        Transparência: links podem ser de afiliado. Isso não muda a decisão — só sustenta o projeto.
-      </p>
-    </section>
-
     <footer>
       Flexihub ©<br/>
       A decisão final, sem ruído.
     </footer>
   </div>
-
-  <!-- ENVIO DO FORM SEM RELOAD -->
-  <script>
-    const form = document.getElementById("suggestForm");
-    const successMsg = document.getElementById("successMsg");
-    const errorMsg = document.getElementById("errorMsg");
-
-    if (form) {
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        successMsg.style.display = "none";
-        errorMsg.style.display = "none";
-
-        const btn = form.querySelector("button");
-        btn.disabled = true;
-        const originalText = btn.textContent;
-        btn.textContent = "Enviando...";
-
-        try {
-          const formData = new FormData(form);
-          const res = await fetch(form.action, {
-            method: "POST",
-            body: formData,
-            headers: { "Accept": "application/json" }
-          });
-
-          if (res.ok) {
-            form.reset();
-            successMsg.style.display = "block";
-          } else {
-            errorMsg.style.display = "block";
-          }
-        } catch (err) {
-          errorMsg.style.display = "block";
-        } finally {
-          btn.disabled = false;
-          btn.textContent = originalText;
-        }
-      });
-    }
-  </script>
 </body>
 </html>
