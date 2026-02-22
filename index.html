@@ -62,7 +62,7 @@
       align-items:center;
       justify-content:space-between;
       gap:16px;
-      margin-bottom: 14px; /* ✅ diminui o “buraco” abaixo da topbar */
+      margin-bottom: 10px; /* ✅ reduz o “buraco” antes do badge */
     }
 
     .brand{
@@ -71,14 +71,14 @@
       text-decoration:none;
     }
 
-    /* ✅ LOGO: controla por ALTURA (evita que o PNG “aumente” a topbar por causa do canvas) */
+    /* ✅ Logo: alinhada certinho com o conteúdo (sem margin negativo)
+       ✅ Aumenta presença com scale pra compensar transparência do PNG */
     .brand-logo{
-      height: 44px;   /* ✅ tamanho bom */
-      width: auto;    /* ✅ mantém proporção */
+      height: 46px;    /* ✅ tamanho base */
+      width: auto;
       display:block;
-
-      margin-left: -10px;          /* ✅ alinha mais à esquerda */
-      transform: translateY(-6px); /* ✅ “corta” o excesso transparente de cima e reduz o buraco */
+      transform: scale(1.18);        /* ✅ deixa maior sem “estourar” altura da topbar */
+      transform-origin: left center; /* ✅ cresce pra direita, mantendo alinhamento à esquerda */
     }
 
     .navlinks{
@@ -382,11 +382,9 @@
       h1 { font-size: 40px; }
       .container { padding-top: 56px; }
 
-      /* Logo responsiva sem sumir */
       .brand-logo{
-        height: 38px;
-        margin-left: -8px;
-        transform: translateY(-4px);
+        height: 40px;
+        transform: scale(1.12);
       }
     }
   </style>
