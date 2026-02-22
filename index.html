@@ -62,26 +62,23 @@
       align-items:center;
       justify-content:space-between;
       gap:16px;
-      margin-bottom: 24px;
+      margin-bottom: 14px; /* ✅ diminui o “buraco” abaixo da topbar */
     }
 
     .brand{
       display:flex;
       align-items:center;
       text-decoration:none;
-      color: var(--text);
-      font-weight: 900;
-      letter-spacing: -0.02em;
     }
 
-    /* ✅ LOGO (140px de largura, como você fez) */
+    /* ✅ LOGO: controla por ALTURA (evita que o PNG “aumente” a topbar por causa do canvas) */
     .brand-logo{
-      width: 140px;
-      height: auto;
+      height: 44px;   /* ✅ tamanho bom */
+      width: auto;    /* ✅ mantém proporção */
       display:block;
 
-      /* ✅ alinha melhor à esquerda (compensa “respiro” do PNG) */
-      margin-left: -10px;
+      margin-left: -10px;          /* ✅ alinha mais à esquerda */
+      transform: translateY(-6px); /* ✅ “corta” o excesso transparente de cima e reduz o buraco */
     }
 
     .navlinks{
@@ -384,7 +381,13 @@
     @media (max-width: 720px){
       h1 { font-size: 40px; }
       .container { padding-top: 56px; }
-      .brand-logo{ width: 120px; margin-left: -8px; }
+
+      /* Logo responsiva sem sumir */
+      .brand-logo{
+        height: 38px;
+        margin-left: -8px;
+        transform: translateY(-4px);
+      }
     }
   </style>
 </head>
