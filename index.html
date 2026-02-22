@@ -19,6 +19,7 @@
       --ok:#9be9a8;
       --err:#ffb4b4;
 
+      /* Tech vibe */
       --glowA: rgba(120,120,255,0.18);
       --glowB: rgba(120,255,220,0.08);
       --grid: rgba(255,255,255,0.03);
@@ -35,6 +36,7 @@
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
       background:
         radial-gradient(900px 420px at 50% -12%, var(--glowA), transparent 60%),
         radial-gradient(700px 360px at 10% 10%, var(--glowB), transparent 60%),
@@ -42,6 +44,7 @@
         linear-gradient(90deg, var(--grid) 1px, transparent 1px),
         var(--bg);
       background-size: auto, auto, 52px 52px, 52px 52px, auto;
+
       color: var(--text);
     }
 
@@ -51,10 +54,12 @@
       padding: 72px 24px 64px;
     }
 
+    /* Top nav */
     .topbar{
       display:flex;
       align-items:center;
       justify-content:space-between;
+      gap:16px;
       margin-bottom: 24px;
     }
 
@@ -76,8 +81,31 @@
       box-shadow: 0 0 28px rgba(140,140,255,0.35);
     }
 
+    .navlinks{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap: wrap;
+      justify-content:flex-end;
+    }
+
+    .link{
+      color: var(--muted);
+      text-decoration:none;
+      font-size:14px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(18,18,24,0.35);
+      backdrop-filter: blur(6px);
+    }
+    .link:hover{ filter: brightness(1.08); }
+
+    /* Badge */
     .badge {
       display: inline-flex;
+      align-items: center;
+      gap: 10px;
       padding: 10px 14px;
       border: 1px solid var(--border);
       background: rgba(18,18,24,0.7);
@@ -89,7 +117,9 @@
       backdrop-filter: blur(6px);
     }
 
+    /* Hero */
     .hero {
+      position: relative;
       padding-bottom: 34px;
       border-bottom: 1px solid rgba(255,255,255,0.08);
       margin-bottom: 40px;
@@ -110,26 +140,80 @@
       max-width: 820px;
     }
 
+    .cta-row{
+      display:flex;
+      gap:12px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+      align-items:center;
+    }
+
     .btn {
       display: inline-flex;
+      align-items: center;
+      justify-content: center;
       padding: 12px 16px;
       border-radius: 12px;
       border: 1px solid rgba(255,255,255,0.14);
-      background: var(--accent);
-      color: var(--accentText);
+      background: transparent;
+      color: var(--text);
       text-decoration: none;
       font-weight: 800;
       font-size: 14px;
       cursor: pointer;
     }
 
+    .btn.primary {
+      background: var(--accent);
+      color: var(--accentText);
+      border-color: transparent;
+    }
+
+    .btn:hover { filter: brightness(1.05); }
+
+    /* AI preview card */
+    .ai-preview {
+      margin-top: 18px;
+      max-width: 560px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(28,28,40,0.95), rgba(18,18,24,0.95));
+      border: 1px solid var(--aiBorder);
+      box-shadow: 0 0 70px var(--aiGlow);
+      padding: 18px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 13px;
+    }
+
+    .ai-preview .title {
+      color: var(--aiLabel);
+      font-weight: 800;
+      margin-bottom: 10px;
+      letter-spacing: 0.10em;
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+
+    .ai-preview p {
+      margin: 6px 0;
+      color: var(--aiText);
+      line-height: 1.5;
+    }
+
+    .ai-preview span {
+      color: var(--aiGood);
+      font-weight: 700;
+    }
+
+    /* Sections */
     section { margin: 44px 0; }
 
     .section-title {
       font-size: 22px;
-      margin-bottom: 14px;
+      margin: 0 0 14px;
+      letter-spacing: -0.01em;
     }
 
+    /* Cards grid */
     .grid-3 {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -141,40 +225,99 @@
     }
 
     .card {
+      position: relative;
       border: 1px solid var(--border);
       background: rgba(22,22,28,0.92);
       border-radius: 16px;
       padding: 18px;
+      overflow: hidden;
+      backdrop-filter: blur(6px);
       text-decoration:none;
       color: var(--text);
+      min-height: 132px;
     }
 
-    .card.disabled{
-      opacity: 0.7;
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background:
+        radial-gradient(closest-side, rgba(140,140,255,0.10), transparent 65%),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: auto, 56px 56px, 56px 56px;
+      transform: rotate(8deg);
+      opacity: 0.45;
+      pointer-events:none;
     }
+
+    .card > * { position: relative; }
+
+    .card h3 { margin: 0 0 8px; font-size: 16px; letter-spacing: 0.02em; }
+    .card p  { margin: 0; color: var(--muted); line-height: 1.7; font-size: 15px; }
 
     .chip{
-      display:inline-block;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
       border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(18,18,24,0.45);
+      color: var(--muted2);
       padding: 6px 10px;
       border-radius: 999px;
       font-size: 12px;
       margin-top: 12px;
-      color: var(--muted2);
+      backdrop-filter: blur(6px);
     }
 
+    .card.disabled{
+      opacity: 0.72;
+      cursor: default;
+    }
+    .card.disabled:hover{ filter:none; }
+
+    /* How it works */
     .step {
+      position: relative;
       border: 1px solid var(--border);
       background: rgba(18,18,24,0.6);
       border-radius: 16px;
       padding: 18px;
+      backdrop-filter: blur(6px);
+      overflow:hidden;
     }
+    .step .num{
+      position:absolute;
+      right: 14px;
+      top: 10px;
+      font-size: 44px;
+      font-weight: 900;
+      color: rgba(255,255,255,0.06);
+      letter-spacing: -0.04em;
+      user-select:none;
+      pointer-events:none;
+    }
+    .step h3{ margin: 0 0 8px; font-size:16px; }
+    .step p { margin:0; color: var(--muted); line-height:1.7; font-size:15px; }
 
+    /* Form */
+    .form-wrap { margin-top: 10px; max-width: 560px; }
     .form-card{
       border: 1px solid var(--border);
-      background: rgba(22,22,30,0.92);
+      background: linear-gradient(180deg, rgba(22,22,30,0.92), rgba(14,14,17,0.90));
       border-radius: 16px;
       padding: 18px;
+      box-shadow: 0 18px 60px rgba(0,0,0,0.45);
+      backdrop-filter: blur(6px);
+    }
+
+    .form-title{
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted2);
+      margin: 0 0 10px;
     }
 
     form.form {
@@ -188,13 +331,58 @@
       gap: 12px;
     }
 
-    input {
-      padding: 14px;
+    @media (max-width: 720px){
+      h1 { font-size: 40px; }
+      .container { padding-top: 56px; }
+      .row { grid-template-columns: 1fr; }
+    }
+
+    .form input {
+      padding: 14px 14px;
       border-radius: 12px;
       border: 1px solid rgba(255,255,255,0.10);
       background: rgba(14,14,17,0.55);
       color: var(--text);
       font-size: 16px;
+      outline: none;
+    }
+
+    .form input::placeholder { color: var(--muted2); }
+
+    .form input:focus {
+      border-color: rgba(255,255,255,0.26);
+      background: rgba(14,14,17,0.75);
+    }
+
+    .form button {
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: none;
+      background: var(--accent);
+      color: var(--accentText);
+      font-weight: 800;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .form button:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .helper {
+      font-size: 13px;
+      color: var(--muted2);
+      margin: 2px 0 0;
+      line-height: 1.5;
+    }
+
+    .success { font-size: 13px; color: var(--ok); margin-top: 6px; }
+    .error { font-size: 13px; color: var(--err); margin-top: 6px; }
+
+    .fineprint{
+      margin-top: 8px;
+      color: rgba(255,255,255,0.45);
+      font-size: 12px;
+      line-height: 1.5;
+      max-width: 760px;
     }
 
     footer {
@@ -210,87 +398,190 @@
 <body>
   <div class="container">
 
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <a class="brand" href="/">
+        <span class="dot"></span>
+        <span>Flexihub</span>
+      </a>
+
+      <div class="navlinks">
+        <a class="link" href="#categorias">Categorias</a>
+        <a class="link" href="#como-funciona">Como funciona</a>
+        <a class="link" href="#sugestoes">Sugestões</a>
+      </div>
+    </div>
+
+    <!-- HERO -->
     <header class="hero">
       <div class="badge">A DECISÃO FINAL • SEM RUÍDO</div>
+
       <h1>Pare de pesquisar.<br/>A Flexihub decide por você.</h1>
+
       <p class="lead">
-        Um produto por cenário. Sem comparações infinitas.
+        Um produto por cenário. Sem comparações infinitas, sem arrependimento.
       </p>
+
+      <p class="lead">
+        Você escolhe o objetivo. A Flexihub entrega a recomendação final — com links nas principais plataformas.
+      </p>
+
+      <div class="cta-row">
+        <a class="btn primary" href="#categorias">Ver categorias</a>
+        <a class="btn" href="#sugestoes">Sugerir categoria</a>
+      </div>
+
+      <div class="ai-preview" aria-label="Preview de recomendação">
+        <div class="title">Preview • Recomendação Direta</div>
+        <p><span>Cenário:</span> “Notebook para estudar e trabalhar (uso geral)”</p>
+        <p><span>Decisão:</span> “Compre este modelo. Ponto.”</p>
+        <p><span>Motivo:</span> “Equilíbrio real: desempenho, durabilidade e preço.”</p>
+      </div>
     </header>
 
+    <!-- CATEGORIAS -->
     <section id="categorias">
       <h2 class="section-title">Categorias</h2>
 
       <div class="grid-3">
         <a class="card" href="/notebooks/">
           <h3>Notebooks</h3>
-          <p>Decisões por cenário.</p>
+          <p>Decisões por cenário: faculdade, trabalho, programação, uso básico.</p>
           <div class="chip">Primeira categoria</div>
         </a>
 
-        <div class="card disabled">
+        <div class="card disabled" aria-disabled="true">
           <h3>Monitores</h3>
-          <p>Escolha direta para home office ou design.</p>
+          <p>Escolha direta para home office, design ou uso básico.</p>
           <div class="chip">Em breve</div>
         </div>
 
-        <div class="card disabled">
+        <div class="card disabled" aria-disabled="true">
           <h3>TVs</h3>
-          <p>Escolha por tamanho e tipo de uso.</p>
+          <p>Escolha por tamanho de ambiente e tipo de uso.</p>
           <div class="chip">Em breve</div>
         </div>
       </div>
+
+      <p class="fineprint">
+        A Flexihub começa com poucas categorias por uma razão: autoridade nasce de consistência.
+        Conforme os cenários forem validados, novas categorias entram.
+      </p>
     </section>
 
+    <!-- COMO FUNCIONA -->
     <section id="como-funciona">
       <h2 class="section-title">Como funciona</h2>
 
       <div class="grid-3">
         <div class="step">
-          <h3>01. Você escolhe o cenário</h3>
-          <p>Exemplo: notebook para faculdade.</p>
+          <div class="num">01</div>
+          <h3>Você escolhe o cenário</h3>
+          <p>“Notebook para faculdade”, “Notebook para trabalho”, etc.</p>
         </div>
 
         <div class="step">
-          <h3>02. A Flexihub decide</h3>
-          <p>Uma recomendação final baseada em critérios claros.</p>
+          <div class="num">02</div>
+          <h3>A Flexihub decide</h3>
+          <p>Uma recomendação final baseada em critérios claros e repetíveis.</p>
         </div>
 
         <div class="step">
-          <h3>03. Você compra sem ruído</h3>
+          <div class="num">03</div>
+          <h3>Você compra sem ruído</h3>
           <p>Links diretos em plataformas confiáveis.</p>
         </div>
       </div>
     </section>
 
-    <section id="waitlist">
+    <!-- SUGESTÕES -->
+    <section id="sugestoes">
       <h2 class="section-title">Sugira uma nova categoria</h2>
 
-      <div class="form-card">
-        <p>Nova categoria</p>
+      <div class="form-wrap">
+        <div class="form-card">
+          <p class="form-title">Nova categoria</p>
 
-        <form
-          action="https://formspree.io/f/xnjjndby"
-          method="POST"
-          class="form"
-        >
-          <div class="row">
-            <input type="text" name="name" placeholder="Seu nome (opcional)" />
-            <input type="email" name="email" placeholder="Seu e-mail (opcional)" />
-          </div>
+          <form
+            id="suggestForm"
+            action="https://formspree.io/f/xnjjndby"
+            method="POST"
+            class="form"
+          >
+            <div class="row">
+              <input type="text" name="name" placeholder="Seu nome (opcional)" />
+              <input type="email" name="email" placeholder="Seu e-mail (opcional)" />
+            </div>
 
-          <input type="text" name="category" placeholder="Qual categoria você gostaria de ver?" required />
+            <input type="text" name="category" placeholder="Qual categoria você gostaria de ver na Flexihub?" required />
 
-          <button type="submit">Enviar sugestão</button>
-        </form>
+            <button type="submit">Enviar sugestão</button>
+
+            <p class="helper">
+              Sua sugestão ajuda a definir as próximas decisões da Flexihub.
+            </p>
+
+            <p id="successMsg" class="success" style="display:none;">
+              Sugestão recebida. Obrigado! 🚀
+            </p>
+
+            <p id="errorMsg" class="error" style="display:none;">
+              Ops… não consegui enviar agora. Tente novamente.
+            </p>
+          </form>
+        </div>
       </div>
+
+      <p class="fineprint">
+        Transparência: links podem ser de afiliado. Isso não muda a decisão — só sustenta o projeto.
+      </p>
     </section>
 
     <footer>
       Flexihub ©<br/>
-      A decisão final.
+      A decisão final, sem ruído.
     </footer>
-
   </div>
+
+  <!-- ENVIO DO FORM SEM RELOAD -->
+  <script>
+    const form = document.getElementById("suggestForm");
+    const successMsg = document.getElementById("successMsg");
+    const errorMsg = document.getElementById("errorMsg");
+
+    if (form) {
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        successMsg.style.display = "none";
+        errorMsg.style.display = "none";
+
+        const btn = form.querySelector("button");
+        btn.disabled = true;
+        const originalText = btn.textContent;
+        btn.textContent = "Enviando...";
+
+        try {
+          const formData = new FormData(form);
+          const res = await fetch(form.action, {
+            method: "POST",
+            body: formData,
+            headers: { "Accept": "application/json" }
+          });
+
+          if (res.ok) {
+            form.reset();
+            successMsg.style.display = "block";
+          } else {
+            errorMsg.style.display = "block";
+          }
+        } catch (err) {
+          errorMsg.style.display = "block";
+        } finally {
+          btn.disabled = false;
+          btn.textContent = originalText;
+        }
+      });
+    }
+  </script>
 </body>
 </html>
