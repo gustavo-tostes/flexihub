@@ -223,21 +223,45 @@
     /* Sections */
     section { margin: 44px 0; }
 
+    .section-title-row{
+      display:flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
     .section-title {
       font-size: 22px;
-      margin: 0 0 14px;
+      margin: 0;
       letter-spacing: -0.01em;
     }
 
+    .section-link{
+      color: rgba(255,255,255,0.78);
+      text-decoration:none;
+      font-size: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      padding-bottom: 1px;
+    }
+    .section-link:hover{
+      color: rgba(255,255,255,0.92);
+      border-bottom-color: rgba(255,255,255,0.22);
+    }
+
     /* Cards grid */
-    .grid-3 {
+    .grid-4 {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 14px;
     }
 
-    @media (max-width: 900px){
-      .grid-3 { grid-template-columns: 1fr; }
+    @media (max-width: 1000px){
+      .grid-4 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 620px){
+      .grid-4 { grid-template-columns: 1fr; }
     }
 
     .card {
@@ -251,6 +275,13 @@
       text-decoration:none;
       color: var(--text);
       min-height: 132px;
+      transition: transform .15s ease, filter .15s ease, border-color .15s ease;
+    }
+
+    .card:hover{
+      transform: translateY(-1px);
+      filter: brightness(1.03);
+      border-color: rgba(255,255,255,0.14);
     }
 
     .card::before{
@@ -286,13 +317,30 @@
       backdrop-filter: blur(6px);
     }
 
-    .card.disabled{
-      opacity: 0.72;
-      cursor: default;
+    /* "Ver todas" card */
+    .card.all{
+      border-style: dashed;
+      background: rgba(18,18,24,0.38);
     }
-    .card.disabled:hover{ filter:none; }
+    .card.all p{ color: rgba(255,255,255,0.66); }
+    .arrow{
+      display:inline-block;
+      margin-top: 10px;
+      font-weight: 900;
+      letter-spacing: -0.01em;
+      color: rgba(255,255,255,0.85);
+    }
 
     /* How it works */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    @media (max-width: 900px){
+      .grid-3 { grid-template-columns: 1fr; }
+    }
+
     .step {
       position: relative;
       border: 1px solid var(--border);
@@ -317,7 +365,7 @@
     .step p { margin:0; color: var(--muted); line-height:1.7; font-size:15px; }
 
     .fineprint{
-      margin-top: 8px;
+      margin-top: 10px;
       color: rgba(255,255,255,0.45);
       font-size: 12px;
       line-height: 1.5;
@@ -350,7 +398,7 @@
       </a>
 
       <div class="navlinks">
-        <a class="link" href="#categorias">Categorias</a>
+        <a class="link" href="/categorias/">Categorias</a>
         <a class="link" href="#como-funciona">Como funciona</a>
         <a class="link cta" href="/sugestoes/">Sugestões</a>
       </div>
@@ -371,7 +419,7 @@
       </p>
 
       <div class="cta-row">
-        <a class="btn primary" href="#categorias">Ver categorias</a>
+        <a class="btn primary" href="#em-alta">Ver categorias em alta</a>
         <a class="btn" href="/sugestoes/">Sugerir categoria</a>
       </div>
 
@@ -383,28 +431,37 @@
       </div>
     </header>
 
-    <!-- CATEGORIAS -->
-    <section id="categorias">
-      <h2 class="section-title">Categorias</h2>
+    <!-- CATEGORIAS EM ALTA -->
+    <section id="em-alta">
+      <div class="section-title-row">
+        <h2 class="section-title">Categorias em alta</h2>
+        <a class="section-link" href="/categorias/">Ver todas →</a>
+      </div>
 
-      <div class="grid-3">
+      <div class="grid-4">
         <a class="card" href="/notebooks/">
           <h3>Notebooks</h3>
           <p>Decisões por cenário: faculdade, trabalho, programação, uso básico.</p>
-          <div class="chip">Primeira categoria</div>
+          <div class="chip">Em alta</div>
         </a>
 
-        <div class="card disabled" aria-disabled="true">
+        <a class="card" href="/monitores/">
           <h3>Monitores</h3>
           <p>Escolha direta para home office, design ou uso básico.</p>
-          <div class="chip">Em breve</div>
-        </div>
+          <div class="chip">Em alta</div>
+        </a>
 
-        <div class="card disabled" aria-disabled="true">
+        <a class="card" href="/tvs/">
           <h3>TVs</h3>
           <p>Escolha por tamanho de ambiente e tipo de uso.</p>
-          <div class="chip">Em breve</div>
-        </div>
+          <div class="chip">Em alta</div>
+        </a>
+
+        <a class="card all" href="/categorias/">
+          <h3>Ver todas as categorias</h3>
+          <p>Acesse a lista completa e explore por cenário.</p>
+          <div class="arrow">Abrir lista completa →</div>
+        </a>
       </div>
 
       <p class="fineprint">
@@ -419,7 +476,7 @@
 
     <!-- COMO FUNCIONA -->
     <section id="como-funciona">
-      <h2 class="section-title">Como funciona</h2>
+      <h2 class="section-title" style="margin-bottom:14px;">Como funciona</h2>
 
       <div class="grid-3">
         <div class="step">
