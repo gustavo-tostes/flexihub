@@ -22,6 +22,10 @@
       --glowA: rgba(120,120,255,0.18);
       --glowB: rgba(120,255,220,0.08);
       --grid: rgba(255,255,255,0.03);
+
+      /* CTA subtle */
+      --ctaBg: rgba(255,255,255,0.08);
+      --ctaBorder: rgba(255,255,255,0.16);
     }
 
     * { box-sizing: border-box; }
@@ -53,7 +57,7 @@
       align-items:center;
       justify-content:space-between;
       gap:16px;
-      margin-bottom: 24px;
+      margin-bottom: 18px;
     }
 
     .brand{
@@ -91,11 +95,46 @@
       border: 1px solid rgba(255,255,255,0.08);
       background: rgba(18,18,24,0.35);
       backdrop-filter: blur(6px);
+      transition: filter .15s ease, background .15s ease, border-color .15s ease;
     }
     .link:hover{ filter: brightness(1.08); }
 
+    .link.cta{
+      color: var(--text);
+      background: var(--ctaBg);
+      border-color: var(--ctaBorder);
+      box-shadow: 0 0 40px rgba(140,140,255,0.12);
+    }
+    .link.cta:hover{
+      filter: brightness(1.12);
+      background: rgba(255,255,255,0.10);
+      border-color: rgba(255,255,255,0.22);
+    }
+
+    /* Breadcrumb */
+    .crumbs{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 14px;
+    }
+    .crumbs a{
+      color: rgba(255,255,255,0.70);
+      text-decoration:none;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+      padding-bottom: 1px;
+    }
+    .crumbs a:hover{
+      color: rgba(255,255,255,0.90);
+      border-bottom-color: rgba(255,255,255,0.22);
+    }
+    .crumbs .sep{ opacity: 0.45; }
+    .crumbs .current{ color: rgba(255,255,255,0.78); }
+
     h1 {
-      margin: 10px 0 10px;
+      margin: 6px 0 10px;
       font-size: 44px;
       line-height: 1.1;
       letter-spacing: -0.03em;
@@ -213,8 +252,15 @@
       <div class="navlinks">
         <a class="link" href="/#categorias">Categorias</a>
         <a class="link" href="/#como-funciona">Como funciona</a>
-        <a class="link" href="/sugestoes/">Sugestões</a>
+        <a class="link cta" href="/sugestoes/">Sugestões</a>
       </div>
+    </div>
+
+    <!-- BREADCRUMB -->
+    <div class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span class="sep">/</span>
+      <span class="current">Sugestões</span>
     </div>
 
     <h1>Sugira uma nova categoria</h1>
