@@ -62,23 +62,26 @@
       align-items:center;
       justify-content:space-between;
       gap:16px;
-      margin-bottom: 10px; /* ✅ reduz o “buraco” antes do badge */
+      margin-bottom: 10px; /* ✅ mantém baixo (sem buraco) */
     }
 
     .brand{
       display:flex;
       align-items:center;
       text-decoration:none;
+      line-height: 0;
     }
 
-    /* ✅ Logo: alinhada certinho com o conteúdo (sem margin negativo)
-       ✅ Aumenta presença com scale pra compensar transparência do PNG */
+    /* ✅ AQUI está a correção:
+       - height pequeno (não empurra layout)
+       - scale grande (fica ~120px visual)
+       - translateX ajusta o “padding transparente” do PNG */
     .brand-logo{
-      height: 120px;    /* ✅ tamanho base */
+      height: 46px;   /* ✅ altura real pequena pra não estourar */
       width: auto;
       display:block;
-      transform: scale(1.18);        /* ✅ deixa maior sem “estourar” altura da topbar */
-      transform-origin: left center; /* ✅ cresce pra direita, mantendo alinhamento à esquerda */
+      transform: translateX(-12px) scale(2.6); /* ✅ ~46*2.6 ≈ 120px */
+      transform-origin: left center;
     }
 
     .navlinks{
@@ -382,9 +385,10 @@
       h1 { font-size: 40px; }
       .container { padding-top: 56px; }
 
+      /* ✅ mobile: logo grande, mas menos */
       .brand-logo{
-        height: 40px;
-        transform: scale(1.12);
+        height: 36px;
+        transform: translateX(-10px) scale(2.0);
       }
     }
   </style>
