@@ -5,6 +5,30 @@
   <title>Flexihub — A decisão final</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- SEO -->
+  <meta name="description" content="A Flexihub entrega a decisão final. Um produto por cenário, sem ruído, sem comparações infinitas. Escolha melhor. Decida melhor.">
+
+  <!-- Open Graph (WhatsApp, LinkedIn, etc) -->
+  <meta property="og:title" content="Flexihub — A decisão final">
+  <meta property="og:description" content="Um produto por cenário. Sem comparações infinitas. Sem arrependimento.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://flexihub.com.br">
+  <meta property="og:image" content="https://flexihub.com.br/assets/og-image.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Flexihub — A decisão final">
+  <meta name="twitter:description" content="A decisão final, sem ruído.">
+  <meta name="twitter:image" content="https://flexihub.com.br/assets/og-image.png">
+
+  <!-- Favicons -->
+  <link rel="icon" href="/assets/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/assets/favicon-16x16.png" sizes="16x16">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/assets/android-chrome-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="/assets/android-chrome-512x512.png" sizes="512x512">
+
   <style>
     :root{
       --bg:#0e0e11;
@@ -62,7 +86,7 @@
       align-items:center;
       justify-content:space-between;
       gap:16px;
-      margin-bottom: 25px; /* ✅ mantém baixo (sem buraco) */
+      margin-bottom: 25px;
     }
 
     .brand{
@@ -72,15 +96,11 @@
       line-height: 0;
     }
 
-    /* ✅ AQUI está a correção:
-       - height pequeno (não empurra layout)
-       - scale grande (fica ~120px visual)
-       - translateX ajusta o “padding transparente” do PNG */
     .brand-logo{
-      height: 60px;   /* ✅ altura real pequena pra não estourar */
+      height: 60px;
       width: auto;
       display:block;
-      transform: translateX(-38px) scale(2.6); /* ✅ ~46*2.6 ≈ 120px */
+      transform: translateX(-38px) scale(2.6);
       transform-origin: left center;
     }
 
@@ -385,7 +405,6 @@
       h1 { font-size: 40px; }
       .container { padding-top: 56px; }
 
-      /* ✅ mobile: logo grande, mas menos */
       .brand-logo{
         height: 36px;
         transform: translateX(-10px) scale(2.0);
