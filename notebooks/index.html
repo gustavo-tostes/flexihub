@@ -4,7 +4,10 @@
   <meta charset="UTF-8" />
   <title>Flexihub — Notebooks</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- CSS GLOBAL (topbar + mobile + etc) -->
   <link rel="stylesheet" href="/assets/site.css">
+
   <style>
     :root{
       --bg:#0e0e11;
@@ -53,23 +56,6 @@
     }
 
     .container { max-width: 1080px; margin: 0 auto; padding: 72px 24px 64px; }
-
-    /* Topbar */
-    .topbar{ display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom: 18px; }
-    .brand{ display:flex; align-items:center; gap:10px; text-decoration:none; color: var(--text); font-weight: 900; letter-spacing: -0.02em; }
-    .dot{ width:10px; height:10px; border-radius: 999px; background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.35)); box-shadow: 0 0 28px rgba(140,140,255,0.35); }
-    .navlinks{ display:flex; gap:10px; align-items:center; flex-wrap: wrap; justify-content:flex-end; }
-    .link{
-      color: var(--muted); text-decoration:none; font-size:14px;
-      padding: 8px 10px; border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(18,18,24,0.35);
-      backdrop-filter: blur(6px);
-      transition: filter .15s ease, background .15s ease, border-color .15s ease;
-    }
-    .link:hover{ filter: brightness(1.08); }
-    .link.cta{ color: var(--text); background: var(--ctaBg); border-color: var(--ctaBorder); box-shadow: 0 0 40px rgba(140,140,255,0.12); }
-    .link.cta:hover{ filter: brightness(1.12); background: rgba(255,255,255,0.10); border-color: rgba(255,255,255,0.22); }
 
     /* Breadcrumb */
     .crumbs{ display:flex; align-items:center; gap:8px; font-size: 13px; color: rgba(255,255,255,0.55); margin-bottom: 14px; }
@@ -214,10 +200,10 @@
 <body>
   <div class="container">
 
+    <!-- TOPBAR (GLOBAL + LOGO) -->
     <div class="topbar">
       <a class="brand" href="/">
-        <span class="dot"></span>
-        <span>Flexihub</span>
+        <img class="brand-logo" src="/assets/Logo.png" alt="Flexihub" />
       </a>
 
       <div class="navlinks">
