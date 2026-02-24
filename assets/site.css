@@ -1,317 +1,283 @@
-/* =========================
-   Flexihub — site.css (GLOBAL)
-   Micro animações + Topbar + Acessibilidade
-   ========================= */
+/* =========================================================
+   FLEXIHUB — GLOBAL SITE.CSS COMPLETO
+   Fundo consistente + Micro animações + UI refinada
+   ========================================================= */
 
-/* --------- RESET / BASE --------- */
-*,
-*::before,
-*::after { box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
+/* ================= ROOT ================= */
 
 :root{
   --bg:#0e0e11;
   --panel:#121218;
-  --card:#16161c;
   --border:#24242d;
-
   --text:#ffffff;
   --muted:#cfcfd6;
   --muted2:#8a8a93;
 
-  --accent:#ffffff;
-  --accentText:#0e0e11;
-
   --glowA: rgba(120,120,255,0.18);
   --glowB: rgba(120,255,220,0.08);
   --grid: rgba(255,255,255,0.03);
-
-  --ctaBg: rgba(255,255,255,0.08);
-  --ctaBorder: rgba(255,255,255,0.16);
-
-  --aiBorder: rgba(140,140,255,0.35);
-  --aiGlow: rgba(120,120,255,0.20);
-
-  --okBg: rgba(155,233,168,0.10);
-  --okBorder: rgba(155,233,168,0.22);
-  --okText: rgba(155,233,168,0.95);
-
-  --warnBg: rgba(255,255,255,0.06);
-  --warnBorder: rgba(255,255,255,0.12);
-  --warnText: rgba(255,255,255,0.72);
-
-  /* Micro */
-  --easeOut: cubic-bezier(.2,.9,.2,1);
-  --easeInOut: cubic-bezier(.4,0,.2,1);
-
-  --focusRing: rgba(140,140,255,0.35);
 }
 
-/* Evita “flash” feio em alguns navegadores */
-body { text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
+/* ================= RESET BASE ================= */
 
-a { color: inherit; }
-img { max-width: 100%; display: block; }
-
-::selection{
-  background: rgba(140,140,255,0.25);
+*{
+  box-sizing:border-box;
 }
 
-/* --------- TOPBAR GLOBAL --------- */
+html{
+  background:var(--bg);
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  padding:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  color:var(--text);
+  min-height:100vh;
+
+  background:
+    radial-gradient(900px 420px at 50% -12%, var(--glowA), transparent 60%),
+    radial-gradient(700px 360px at 10% 10%, var(--glowB), transparent 60%),
+    radial-gradient(900px 420px at 50% 112%, rgba(120,120,255,0.12), transparent 60%),
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+    var(--bg);
+
+  background-size:auto,auto,auto,52px 52px,52px 52px,auto;
+}
+
+/* ================= CONTAINER ================= */
+
+.container{
+  max-width:1080px;
+  margin:0 auto;
+  padding:72px 24px 64px;
+}
+
+/* ================= TOPBAR ================= */
+
 .topbar{
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:16px;
-  margin-bottom: 18px;
+  margin-bottom:25px;
 }
 
 .brand{
   display:flex;
   align-items:center;
   text-decoration:none;
-  line-height: 0;
-  flex: 0 0 auto;
-  position: relative;
+  line-height:0;
 }
 
-/* Logo padrão (as páginas podem sobrescrever com inline se quiserem) */
 .brand-logo{
-  height: 54px;
-  width: auto;
+  height:60px;
+  width:auto;
   display:block;
-  transform-origin: left center;
+  transform:translateX(-38px) scale(2.6);
+  transform-origin:left center;
 }
 
-/* “Respiração” da marca (bem sutil) */
-.brand::after{
-  content:"";
-  position:absolute;
-  left: 18px;
-  top: 50%;
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  transform: translate(-140%, -50%);
-  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.3));
-  box-shadow: 0 0 26px rgba(140,140,255,0.35);
-  opacity: 0.0;
-  transition: opacity .25s var(--easeOut);
-  pointer-events:none;
-}
-.brand:hover::after{ opacity: 0.85; }
+/* ================= NAV ================= */
 
 .navlinks{
   display:flex;
   gap:10px;
   align-items:center;
-  flex-wrap: wrap;
+  flex-wrap:wrap;
   justify-content:flex-end;
 }
 
+.navlinks a,
+.navlinks a:visited{
+  color:var(--muted) !important;
+  text-decoration:none !important;
+}
+
+.navlinks a:hover{
+  color:var(--text) !important;
+  text-decoration:none !important;
+}
+
 .link{
-  color: var(--muted);
-  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
   font-size:14px;
-  padding: 8px 10px;
-  border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.08);
-  background: rgba(18,18,24,0.35);
-  backdrop-filter: blur(6px);
+  padding:8px 10px;
+  border-radius:10px;
+
+  border:1px solid rgba(255,255,255,0.08);
+  background:rgba(18,18,24,0.35);
+  backdrop-filter:blur(6px);
+
   transition:
-    transform .18s var(--easeOut),
-    filter .18s var(--easeOut),
-    background .18s var(--easeOut),
-    border-color .18s var(--easeOut),
-    box-shadow .18s var(--easeOut);
-  white-space: nowrap;
-  will-change: transform;
+    transform .18s ease,
+    filter .18s ease,
+    border-color .18s ease,
+    background .18s ease,
+    box-shadow .18s ease;
 }
 
 .link:hover{
-  filter: brightness(1.08);
-  transform: translateY(-1px);
-  border-color: rgba(255,255,255,0.14);
-}
-
-.link:active{
-  transform: translateY(0px) scale(0.98);
+  filter:brightness(1.08);
 }
 
 .link.cta{
-  color: var(--text);
-  background: var(--ctaBg);
-  border-color: var(--ctaBorder);
-  box-shadow: 0 0 40px rgba(140,140,255,0.12);
+  color:var(--text) !important;
+  background:rgba(255,255,255,0.08);
+  border-color:rgba(255,255,255,0.16);
+  box-shadow:0 0 40px rgba(140,140,255,0.12);
+  position:relative;
+  overflow:hidden;
 }
 
-.link.cta:hover{
-  filter: brightness(1.12);
-  background: rgba(255,255,255,0.10);
-  border-color: rgba(255,255,255,0.22);
-  box-shadow: 0 0 60px rgba(140,140,255,0.18);
-}
-
-/* --------- BOTÕES / CTA (GENÉRICO) --------- */
-.btn,
-button,
-input[type="submit"]{
-  transition:
-    transform .18s var(--easeOut),
-    filter .18s var(--easeOut),
-    box-shadow .18s var(--easeOut),
-    border-color .18s var(--easeOut),
-    background .18s var(--easeOut);
-}
-
-.btn:hover,
-button:hover,
-input[type="submit"]:hover{
-  filter: brightness(1.04);
-  transform: translateY(-1px);
-}
-
-.btn:active,
-button:active,
-input[type="submit"]:active{
-  transform: translateY(0px) scale(0.985);
-}
-
-/* --------- CARDS / PANELS (GENÉRICO) --------- */
-.card,
-.panel,
-.step,
-.form-card,
-.ai-preview{
-  will-change: transform;
-  transition:
-    transform .18s var(--easeOut),
-    filter .18s var(--easeOut),
-    border-color .18s var(--easeOut),
-    box-shadow .18s var(--easeOut);
-}
-
-/* hover “premium” */
-.card:hover,
-.panel:hover,
-.step:hover,
-.form-card:hover,
-.ai-preview:hover{
-  transform: translateY(-1px);
-  filter: brightness(1.02);
-  border-color: rgba(255,255,255,0.14);
-}
-
-/* Decision card pulse leve (só quando visível via JS) */
-.fx-pulse{
-  animation: fxPulse 3.8s var(--easeInOut) infinite;
-}
-
-@keyframes fxPulse{
-  0%   { box-shadow: 0 0 65px rgba(120,120,255,0.16); }
-  50%  { box-shadow: 0 0 85px rgba(120,120,255,0.22); }
-  100% { box-shadow: 0 0 65px rgba(120,120,255,0.16); }
-}
-
-/* --------- BOTÕES DE CENÁRIO: feedback melhor --------- */
-.scenario-btn{
-  position: relative;
-  overflow: hidden;
-}
-.scenario-btn::after{
+.link.cta::after{
   content:"";
   position:absolute;
-  inset:-2px;
-  background: radial-gradient(420px 120px at 20% 10%, rgba(140,140,255,0.14), transparent 60%);
-  opacity: 0;
-  transition: opacity .22s var(--easeOut);
+  inset:0;
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,.15),
+    transparent
+  );
+  transform:translateX(-120%);
+  transition:transform .6s ease;
   pointer-events:none;
 }
-.scenario-btn:hover::after{ opacity: 1; }
 
-/* “selecionado” (JS adiciona .is-active) */
-.scenario-btn.is-active{
-  border-color: rgba(140,140,255,0.30) !important;
-  background: rgba(18,18,24,0.62) !important;
-  box-shadow: 0 0 55px rgba(120,120,255,0.18);
-  transform: translateY(-1px);
+.link.cta:hover::after{
+  transform:translateX(120%);
 }
 
-/* --------- REVEAL AO SCROLL (JS adiciona .reveal e .is-visible) --------- */
-.reveal{
-  opacity: 0;
-  transform: translateY(10px);
-  filter: blur(1px);
+/* ================= BOTÕES ================= */
+
+.btn{
   transition:
-    opacity .55s var(--easeOut),
-    transform .55s var(--easeOut),
-    filter .55s var(--easeOut);
+    transform .18s ease,
+    filter .18s ease,
+    box-shadow .18s ease;
 }
 
-.reveal.is-visible{
-  opacity: 1;
-  transform: translateY(0px);
-  filter: blur(0px);
+.btn:hover{
+  transform:translateY(-1px);
 }
 
-/* --------- FOCUS (Acessibilidade) --------- */
-:focus { outline: none; }
+/* ================= CARDS ================= */
 
-:focus-visible{
-  outline: 2px solid rgba(140,140,255,0.35);
-  outline-offset: 3px;
-  border-radius: 12px;
+.card{
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease,
+    filter .18s ease;
 }
 
-a:focus-visible,
-button:focus-visible,
-input:focus-visible{
-  box-shadow: 0 0 0 6px rgba(140,140,255,0.10);
+.card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 14px 38px rgba(0,0,0,.36);
 }
 
-/* --------- REDUZIR ANIMAÇÕES --------- */
-@media (prefers-reduced-motion: reduce){
-  html { scroll-behavior: auto; }
+/* ================= SCENARIO BUTTONS ================= */
 
-  .reveal,
-  .card,
-  .panel,
-  .step,
-  .form-card,
-  .ai-preview,
-  .link,
-  .btn,
-  button,
-  input[type="submit"]{
-    transition: none !important;
-    animation: none !important;
-    transform: none !important;
+.scenario-btn{
+  transition:
+    transform .18s ease,
+    border-color .18s ease,
+    box-shadow .18s ease,
+    background .18s ease;
+}
+
+.scenario-btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 30px rgba(0,0,0,.35);
+}
+
+/* ================= DECISION CARD GLOW ================= */
+
+.decision{
+  animation:softPulse 4s ease-in-out infinite;
+}
+
+@keyframes softPulse{
+  0%,100%{
+    box-shadow:0 0 70px rgba(120,120,255,0.18);
+  }
+  50%{
+    box-shadow:0 0 85px rgba(120,120,255,0.28);
   }
 }
- 
-/* --------- MOBILE: topbar “bonita” e consistente --------- */
-@media (max-width: 720px){
+
+/* ================= MICRO ANIMAÇÕES ================= */
+/* Agora elas disparam quando o JS adiciona .is-visible */
+
+.fade-in-up{
+  opacity:0;
+  transform:translateY(10px);
+  will-change: opacity, transform;
+}
+
+.fade-in-up.is-visible{
+  animation:fadeUp .50s ease forwards;
+}
+
+@keyframes fadeUp{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+  margin-top:64px;
+  padding-top:18px;
+  border-top:1px solid rgba(255,255,255,0.08);
+  font-size:13px;
+  color:var(--muted2);
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width:720px){
+
   .topbar{
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
-
-  .navlinks{
-    width: 100%;
-    justify-content: flex-start;
-    gap: 10px;
-  }
-
-  .link{
-    font-size: 13px;
-    padding: 9px 12px;
-    border-radius: 12px;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:12px;
   }
 
   .brand-logo{
-    height: 36px;
-    transform: translateX(-10px) scale(2.0);
+    height:36px;
+    transform:translateX(-10px) scale(2.0);
+  }
+
+  .navlinks{
+    width:100%;
+    justify-content:flex-start;
+    gap:8px;
+  }
+
+  .link{
+    padding:10px 12px;
+    border-radius:12px;
+  }
+
+  .container{
+    padding-top:56px;
+  }
+}
+
+/* ================= ACESSIBILIDADE ================= */
+
+@media (prefers-reduced-motion: reduce){
+  *{
+    animation:none !important;
+    transition:none !important;
+    scroll-behavior:auto !important;
   }
 }
