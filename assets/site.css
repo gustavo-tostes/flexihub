@@ -5,7 +5,7 @@
   align-items:center;
   justify-content:space-between;
   gap:16px;
-  margin-bottom: 25px; /* igual ao seu “final excelente” */
+  margin-bottom: 25px;
 }
 
 .brand{
@@ -32,33 +32,77 @@
   justify-content:flex-end;
 }
 
-/* Mobile adjustments (global) */
+/* ===== Garante estilo dos links em TODAS as páginas (mata o roxo + sublinhado) ===== */
+.navlinks a,
+.navlinks a:visited{
+  color: var(--muted) !important;
+  text-decoration: none !important;
+}
+
+.navlinks a:hover{
+  color: var(--text) !important;
+  text-decoration: none !important;
+}
+
+/* Reaplica “cara” de botão mesmo que outra página tenha CSS conflitante */
+.link{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  color: var(--muted) !important;
+  text-decoration:none !important;
+
+  font-size:14px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(18,18,24,0.35);
+  backdrop-filter: blur(6px);
+  transition: filter .15s ease, background .15s ease, border-color .15s ease;
+}
+
+.link:hover{ filter: brightness(1.08); }
+
+/* CTA */
+.link.cta{
+  color: var(--text) !important;
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.16);
+  box-shadow: 0 0 40px rgba(140,140,255,0.12);
+}
+.link.cta:hover{
+  filter: brightness(1.12);
+  background: rgba(255,255,255,0.10);
+  border-color: rgba(255,255,255,0.22);
+}
+
+/* ===== Mobile (só smartphone) ===== */
 @media (max-width: 720px){
 
-  .container { padding-top: 56px; }
-
-  /* deixa a topbar “respirar” melhor no mobile */
+  /* Topbar vira “logo em cima + menu abaixo” (fica limpo e consistente) */
   .topbar{
-    align-items:flex-start;
-    gap:12px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
   }
 
-  /* logo no mobile sem estourar */
+  /* logo continua bonita no mobile */
   .brand-logo{
     height: 36px;
     transform: translateX(-10px) scale(2.0);
   }
 
-  /* nav quebra bonitinho */
+  /* menu ocupa a largura toda e quebra em linhas bonitinhas */
   .navlinks{
     width: 100%;
-    gap:8px;
-    justify-content:center;
+    justify-content: flex-start;
+    gap: 8px;
   }
 
-  /* opcional: mantém os botões consistentes */
+  /* cada botão fica “tocável” e não estoura */
   .link{
-    padding: 8px 10px;
+    padding: 10px 12px;
     border-radius: 12px;
   }
 }
