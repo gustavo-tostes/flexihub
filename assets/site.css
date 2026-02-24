@@ -32,8 +32,10 @@
   justify-content:flex-end;
 }
 
-/* Mobile adjustments (aplica em TODAS as páginas que linkarem esse CSS) */
+/* Mobile adjustments (global) */
 @media (max-width: 720px){
+
+  .container { padding-top: 56px; }
 
   /* deixa a topbar “respirar” melhor no mobile */
   .topbar{
@@ -41,19 +43,20 @@
     gap:12px;
   }
 
-  /* reduz o “peso” da logo no mobile */
+  /* logo no mobile sem estourar */
   .brand-logo{
     height: 36px;
     transform: translateX(-10px) scale(2.0);
   }
 
-  /* nav vira linhas e fica alinhada à direita */
+  /* nav quebra bonitinho */
   .navlinks{
+    width: 100%;
     gap:8px;
-    justify-content:flex-end;
+    justify-content:center;
   }
 
-  /* opcional: evita botões gigantes demais no topo */
+  /* opcional: mantém os botões consistentes */
   .link{
     padding: 8px 10px;
     border-radius: 12px;
