@@ -1,0 +1,61 @@
+/* ===== Flexihub Global UI (Topbar + Mobile fixes) ===== */
+
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  margin-bottom: 25px; /* igual ao seu “final excelente” */
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  text-decoration:none;
+  line-height: 0;
+}
+
+/* Logo (desktop) */
+.brand-logo{
+  height: 60px;
+  width: auto;
+  display:block;
+  transform: translateX(-38px) scale(2.6);
+  transform-origin: left center;
+}
+
+.navlinks{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  flex-wrap: wrap;
+  justify-content:flex-end;
+}
+
+/* Mobile adjustments (aplica em TODAS as páginas que linkarem esse CSS) */
+@media (max-width: 720px){
+
+  /* deixa a topbar “respirar” melhor no mobile */
+  .topbar{
+    align-items:flex-start;
+    gap:12px;
+  }
+
+  /* reduz o “peso” da logo no mobile */
+  .brand-logo{
+    height: 36px;
+    transform: translateX(-10px) scale(2.0);
+  }
+
+  /* nav vira linhas e fica alinhada à direita */
+  .navlinks{
+    gap:8px;
+    justify-content:flex-end;
+  }
+
+  /* opcional: evita botões gigantes demais no topo */
+  .link{
+    padding: 8px 10px;
+    border-radius: 12px;
+  }
+}
