@@ -1,6 +1,6 @@
 /* =========================================================
-   FLEXIHUB — GLOBAL SITE.CSS
-   Topbar + Navegação + Fundo consistente + Mobile fix
+   FLEXIHUB — GLOBAL SITE.CSS COMPLETO
+   Fundo consistente + Micro animações + UI refinada
    ========================================================= */
 
 /* ================= ROOT ================= */
@@ -24,22 +24,18 @@
   box-sizing:border-box;
 }
 
-html, body{
-  margin:0;
-  padding:0;
-  min-height:100%;
-}
-
 html{
   background:var(--bg);
+  scroll-behavior:smooth;
 }
 
 body{
+  margin:0;
+  padding:0;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
   color:var(--text);
   min-height:100vh;
 
-  /* Fundo completo consistente */
   background:
     radial-gradient(900px 420px at 50% -12%, var(--glowA), transparent 60%),
     radial-gradient(700px 360px at 10% 10%, var(--glowB), transparent 60%),
@@ -94,7 +90,6 @@ body{
   justify-content:flex-end;
 }
 
-/* Remove roxo padrão */
 .navlinks a,
 .navlinks a:visited{
   color:var(--muted) !important;
@@ -106,7 +101,6 @@ body{
   text-decoration:none !important;
 }
 
-/* Botões */
 .link{
   display:inline-flex;
   align-items:center;
@@ -120,25 +114,116 @@ body{
   background:rgba(18,18,24,0.35);
   backdrop-filter:blur(6px);
 
-  transition:filter .15s ease, background .15s ease, border-color .15s ease;
+  transition:
+    transform .18s ease,
+    filter .18s ease,
+    border-color .18s ease,
+    background .18s ease,
+    box-shadow .18s ease;
 }
 
 .link:hover{
   filter:brightness(1.08);
 }
 
-/* CTA */
 .link.cta{
   color:var(--text) !important;
   background:rgba(255,255,255,0.08);
   border-color:rgba(255,255,255,0.16);
   box-shadow:0 0 40px rgba(140,140,255,0.12);
+  position:relative;
+  overflow:hidden;
 }
 
-.link.cta:hover{
-  filter:brightness(1.12);
-  background:rgba(255,255,255,0.10);
-  border-color:rgba(255,255,255,0.22);
+.link.cta::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,.15),
+    transparent
+  );
+  transform:translateX(-120%);
+  transition:transform .6s ease;
+  pointer-events:none;
+}
+
+.link.cta:hover::after{
+  transform:translateX(120%);
+}
+
+/* ================= BOTÕES ================= */
+
+.btn{
+  transition:
+    transform .18s ease,
+    filter .18s ease,
+    box-shadow .18s ease;
+}
+
+.btn:hover{
+  transform:translateY(-1px);
+}
+
+/* ================= CARDS ================= */
+
+.card{
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease,
+    filter .18s ease;
+}
+
+.card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 14px 38px rgba(0,0,0,.36);
+}
+
+/* ================= SCENARIO BUTTONS ================= */
+
+.scenario-btn{
+  transition:
+    transform .18s ease,
+    border-color .18s ease,
+    box-shadow .18s ease,
+    background .18s ease;
+}
+
+.scenario-btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 30px rgba(0,0,0,.35);
+}
+
+/* ================= DECISION CARD GLOW ================= */
+
+.decision{
+  animation:softPulse 4s ease-in-out infinite;
+}
+
+@keyframes softPulse{
+  0%,100%{
+    box-shadow:0 0 70px rgba(120,120,255,0.18);
+  }
+  50%{
+    box-shadow:0 0 85px rgba(120,120,255,0.28);
+  }
+}
+
+/* ================= MICRO ANIMAÇÕES ================= */
+
+.fade-in-up{
+  opacity:0;
+  transform:translateY(8px);
+  animation:fadeUp .45s ease forwards;
+}
+
+@keyframes fadeUp{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 }
 
 /* ================= FOOTER ================= */
@@ -177,22 +262,17 @@ footer{
     border-radius:12px;
   }
 
-  .navlinks .link,
-  .navlinks .link:link,
-  .navlinks .link:visited,
-  .navlinks .link:hover,
-  .navlinks .link:active,
-  .navlinks .link:focus{
-    color:var(--muted) !important;
-    text-decoration:none !important;
-  }
-
-  .navlinks .link.cta,
-  .navlinks .link.cta:visited{
-    color:var(--text) !important;
-  }
-
   .container{
     padding-top:56px;
+  }
+}
+
+/* ================= ACESSIBILIDADE ================= */
+
+@media (prefers-reduced-motion: reduce){
+  *{
+    animation:none !important;
+    transition:none !important;
+    scroll-behavior:auto !important;
   }
 }
