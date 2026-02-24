@@ -4,16 +4,7 @@
   <meta charset="UTF-8" />
   <title>Flexihub — A decisão final</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- ✅ FAVICON (força aparecer em todas as páginas) -->
-  <link rel="icon" href="/assets/favicon.ico?v=1" sizes="any">
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png?v=1">
-  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png?v=1">
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png?v=1">
-  <link rel="manifest" href="/assets/site.webmanifest?v=1">
-
   <link rel="stylesheet" href="/assets/site.css">
-
   <style>
     :root{
       --bg:#0e0e11;
@@ -440,7 +431,7 @@
         font-size: 16px;
       }
 
-      /* CTA empilhado (fica MUITO melhor no mobile) */
+      /* CTA empilhado */
       .cta-row{
         flex-direction: column;
         align-items: stretch;
@@ -450,7 +441,6 @@
         justify-content: center;
       }
 
-      /* Preview ocupa largura toda, sem “sobrar” */
       .ai-preview{
         max-width: 100%;
         padding: 16px;
@@ -462,7 +452,6 @@
       }
     }
 
-    /* Extra: telas bem pequenas */
     @media (max-width: 420px){
       h1{ font-size: 36px; }
       .link{ padding: 9px 10px; }
@@ -489,24 +478,26 @@
 
     <!-- HERO -->
     <header class="hero">
-      <div class="badge">A DECISÃO FINAL • SEM RUÍDO</div>
+      <div class="badge fade-in-up">A DECISÃO FINAL • SEM RUÍDO</div>
 
-      <h1>Pare de pesquisar.<br/>A Flexihub decide por você.</h1>
+      <h1 class="fade-in-up" style="animation-delay:.06s;">
+        Pare de pesquisar.<br/>A Flexihub decide por você.
+      </h1>
 
-      <p class="lead">
+      <p class="lead fade-in-up" style="animation-delay:.12s;">
         Um produto por cenário. Sem comparações infinitas, sem arrependimento.
       </p>
 
-      <p class="lead">
+      <p class="lead fade-in-up" style="animation-delay:.18s;">
         Você escolhe o objetivo. A Flexihub entrega a recomendação final — com links nas principais plataformas.
       </p>
 
-      <div class="cta-row">
+      <div class="cta-row fade-in-up" style="animation-delay:.24s;">
         <a class="btn primary" href="#em-alta">Ver categorias em alta</a>
         <a class="btn" href="/sugestoes/">Sugerir categoria</a>
       </div>
 
-      <div class="ai-preview" aria-label="Preview de recomendação">
+      <div class="ai-preview fade-in-up" style="animation-delay:.30s;" aria-label="Preview de recomendação">
         <div class="title">Preview • Recomendação Direta</div>
         <p><span>Cenário:</span> “Notebook para estudar e trabalhar (uso geral)”</p>
         <p><span>Decisão:</span> “Compre este modelo. Ponto.”</p>
