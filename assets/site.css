@@ -1,110 +1,198 @@
-/* ===== Flexihub Global UI (Topbar + Mobile fixes) ===== */
+/* =========================================================
+   FLEXIHUB — GLOBAL SITE.CSS
+   Topbar + Navegação + Fundo consistente + Mobile fix
+   ========================================================= */
+
+/* ================= ROOT ================= */
+
+:root{
+  --bg:#0e0e11;
+  --panel:#121218;
+  --border:#24242d;
+  --text:#ffffff;
+  --muted:#cfcfd6;
+  --muted2:#8a8a93;
+
+  --glowA: rgba(120,120,255,0.18);
+  --glowB: rgba(120,255,220,0.08);
+  --grid: rgba(255,255,255,0.03);
+}
+
+/* ================= RESET BASE ================= */
+
+*{
+  box-sizing:border-box;
+}
+
+html, body{
+  margin:0;
+  padding:0;
+  min-height:100%;
+}
+
+html{
+  background:var(--bg);
+}
+
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  color:var(--text);
+  min-height:100vh;
+
+  /* Fundo completo consistente */
+  background:
+    radial-gradient(900px 420px at 50% -12%, var(--glowA), transparent 60%),
+    radial-gradient(700px 360px at 10% 10%, var(--glowB), transparent 60%),
+    radial-gradient(900px 420px at 50% 112%, rgba(120,120,255,0.12), transparent 60%),
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+    var(--bg);
+
+  background-size:auto,auto,auto,52px 52px,52px 52px,auto;
+}
+
+/* ================= CONTAINER ================= */
+
+.container{
+  max-width:1080px;
+  margin:0 auto;
+  padding:72px 24px 64px;
+}
+
+/* ================= TOPBAR ================= */
 
 .topbar{
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:16px;
-  margin-bottom: 25px;
+  margin-bottom:25px;
 }
 
 .brand{
   display:flex;
   align-items:center;
   text-decoration:none;
-  line-height: 0;
+  line-height:0;
 }
 
-/* Logo (desktop) */
 .brand-logo{
-  height: 60px;
-  width: auto;
+  height:60px;
+  width:auto;
   display:block;
-  transform: translateX(-38px) scale(2.6);
-  transform-origin: left center;
+  transform:translateX(-38px) scale(2.6);
+  transform-origin:left center;
 }
+
+/* ================= NAV ================= */
 
 .navlinks{
   display:flex;
   gap:10px;
   align-items:center;
-  flex-wrap: wrap;
+  flex-wrap:wrap;
   justify-content:flex-end;
 }
 
-/* Reaplica “cara” de botão */
+/* Remove roxo padrão */
+.navlinks a,
+.navlinks a:visited{
+  color:var(--muted) !important;
+  text-decoration:none !important;
+}
+
+.navlinks a:hover{
+  color:var(--text) !important;
+  text-decoration:none !important;
+}
+
+/* Botões */
 .link{
   display:inline-flex;
   align-items:center;
   justify-content:center;
 
   font-size:14px;
-  padding: 8px 10px;
-  border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.08);
-  background: rgba(18,18,24,0.35);
-  backdrop-filter: blur(6px);
-  transition: filter .15s ease, background .15s ease, border-color .15s ease;
+  padding:8px 10px;
+  border-radius:10px;
+
+  border:1px solid rgba(255,255,255,0.08);
+  background:rgba(18,18,24,0.35);
+  backdrop-filter:blur(6px);
+
+  transition:filter .15s ease, background .15s ease, border-color .15s ease;
 }
 
-.link:hover{ filter: brightness(1.08); }
+.link:hover{
+  filter:brightness(1.08);
+}
 
 /* CTA */
 .link.cta{
-  background: rgba(255,255,255,0.08);
-  border-color: rgba(255,255,255,0.16);
-  box-shadow: 0 0 40px rgba(140,140,255,0.12);
+  color:var(--text) !important;
+  background:rgba(255,255,255,0.08);
+  border-color:rgba(255,255,255,0.16);
+  box-shadow:0 0 40px rgba(140,140,255,0.12);
 }
+
 .link.cta:hover{
-  filter: brightness(1.12);
-  background: rgba(255,255,255,0.10);
-  border-color: rgba(255,255,255,0.22);
+  filter:brightness(1.12);
+  background:rgba(255,255,255,0.10);
+  border-color:rgba(255,255,255,0.22);
 }
 
-/* === FIX DEFINITIVO: mata roxo + sublinhado em TODOS os estados === */
-.navlinks .link,
-.navlinks .link:link,
-.navlinks .link:visited,
-.navlinks .link:hover,
-.navlinks .link:active,
-.navlinks .link:focus{
-  color: var(--muted) !important;
-  text-decoration: none !important;
+/* ================= FOOTER ================= */
+
+footer{
+  margin-top:64px;
+  padding-top:18px;
+  border-top:1px solid rgba(255,255,255,0.08);
+  font-size:13px;
+  color:var(--muted2);
 }
 
-/* CTA fica branco mesmo visitado */
-.navlinks .link.cta,
-.navlinks .link.cta:visited{
-  color: var(--text) !important;
-  text-decoration: none !important;
-}
+/* ================= MOBILE ================= */
 
-/* ===== Mobile (só smartphone) ===== */
-@media (max-width: 720px){
+@media (max-width:720px){
 
-  /* Topbar vira “logo em cima + menu abaixo” */
   .topbar{
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:12px;
   }
 
-  /* logo no mobile */
   .brand-logo{
-    height: 36px;
-    transform: translateX(-10px) scale(2.0);
+    height:36px;
+    transform:translateX(-10px) scale(2.0);
   }
 
-  /* menu ocupa a largura toda e quebra em linhas */
   .navlinks{
-    width: 100%;
-    justify-content: flex-start;
-    gap: 8px;
+    width:100%;
+    justify-content:flex-start;
+    gap:8px;
   }
 
-  /* botões mais “tocáveis” */
   .link{
-    padding: 10px 12px;
-    border-radius: 12px;
+    padding:10px 12px;
+    border-radius:12px;
+  }
+
+  .navlinks .link,
+  .navlinks .link:link,
+  .navlinks .link:visited,
+  .navlinks .link:hover,
+  .navlinks .link:active,
+  .navlinks .link:focus{
+    color:var(--muted) !important;
+    text-decoration:none !important;
+  }
+
+  .navlinks .link.cta,
+  .navlinks .link.cta:visited{
+    color:var(--text) !important;
+  }
+
+  .container{
+    padding-top:56px;
   }
 }
