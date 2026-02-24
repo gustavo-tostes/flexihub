@@ -212,16 +212,11 @@ body{
 }
 
 /* ================= MICRO ANIMAÇÕES ================= */
-/* Agora elas disparam quando o JS adiciona .is-visible */
 
 .fade-in-up{
   opacity:0;
-  transform:translateY(10px);
-  will-change: opacity, transform;
-}
-
-.fade-in-up.is-visible{
-  animation:fadeUp .50s ease forwards;
+  transform:translateY(8px);
+  animation:fadeUp .45s ease forwards;
 }
 
 @keyframes fadeUp{
