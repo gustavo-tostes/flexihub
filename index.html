@@ -5,28 +5,6 @@
   <title>Flexihub — A decisão final</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- SEO / Social -->
-  <meta name="description" content="Um produto por cenário. Sem comparações infinitas. Sem arrependimento. A Flexihub entrega a recomendação final — com links nas principais plataformas." />
-  <link rel="canonical" href="https://flexihub.com.br/" />
-
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://flexihub.com.br/" />
-  <meta property="og:title" content="Flexihub — A decisão final" />
-  <meta property="og:description" content="Um produto por cenário. Sem comparações infinitas. Sem arrependimento." />
-  <meta property="og:image" content="https://flexihub.com.br/assets/og-image.png" />
-
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Flexihub — A decisão final" />
-  <meta name="twitter:description" content="Um produto por cenário. Sem comparações infinitas. Sem arrependimento." />
-  <meta name="twitter:image" content="https://flexihub.com.br/assets/og-image.png" />
-
-  <!-- Favicons (ajuste os nomes se os seus forem diferentes) -->
-  <link rel="icon" href="/assets/favicon.ico" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
-  <link rel="manifest" href="/assets/site.webmanifest" />
-
   <style>
     :root{
       --bg:#0e0e11;
@@ -92,6 +70,7 @@
       align-items:center;
       text-decoration:none;
       line-height: 0;
+      flex: 0 0 auto;
     }
 
     .brand-logo{
@@ -120,6 +99,7 @@
       background: rgba(18,18,24,0.35);
       backdrop-filter: blur(6px);
       transition: filter .15s ease, background .15s ease, border-color .15s ease;
+      white-space: nowrap;
     }
     .link:hover{ filter: brightness(1.08); }
 
@@ -196,6 +176,7 @@
       font-weight: 800;
       font-size: 14px;
       cursor: pointer;
+      white-space: nowrap;
     }
 
     .btn.primary {
@@ -263,6 +244,7 @@
       font-size: 14px;
       border-bottom: 1px solid rgba(255,255,255,0.12);
       padding-bottom: 1px;
+      white-space: nowrap;
     }
     .section-link:hover{
       color: rgba(255,255,255,0.92);
@@ -334,6 +316,7 @@
       font-size: 12px;
       margin-top: 12px;
       backdrop-filter: blur(6px);
+      white-space: nowrap;
     }
 
     /* "Ver todas" card */
@@ -383,100 +366,8 @@
     .step h3{ margin: 0 0 8px; font-size:16px; }
     .step p { margin:0; color: var(--muted); line-height:1.7; font-size:15px; }
 
-    /* NEW: Método */
-    .method{
-      border: 1px solid var(--border);
-      background: rgba(18,18,24,0.55);
-      border-radius: 16px;
-      padding: 22px;
-      backdrop-filter: blur(6px);
-    }
-
-    .method-head{
-      display:flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 14px;
-      flex-wrap: wrap;
-    }
-
-    .method-title{
-      font-size: 22px;
-      margin: 0;
-      letter-spacing: -0.01em;
-    }
-
-    .method-sub{
-      margin: 0;
-      color: rgba(255,255,255,0.72);
-      font-size: 14px;
-      border-bottom: 1px solid rgba(255,255,255,0.12);
-      padding-bottom: 1px;
-    }
-
-    .method-grid{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 14px;
-    }
-
-    @media (max-width: 900px){
-      .method-grid{ grid-template-columns: 1fr; }
-    }
-
-    .method-card{
-      position: relative;
-      border: 1px solid var(--border);
-      background: rgba(22,22,28,0.92);
-      border-radius: 16px;
-      padding: 18px;
-      overflow:hidden;
-    }
-
-    .method-card::before{
-      content:"";
-      position:absolute;
-      inset:-40%;
-      background:
-        radial-gradient(closest-side, rgba(140,140,255,0.10), transparent 65%),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size: auto, 56px 56px, 56px 56px;
-      transform: rotate(8deg);
-      opacity: 0.35;
-      pointer-events:none;
-    }
-    .method-card > *{ position: relative; }
-
-    .method-card h3{
-      margin: 0 0 8px;
-      font-size: 16px;
-      letter-spacing: 0.02em;
-    }
-
-    .method-card p{
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.7;
-      font-size: 15px;
-    }
-
-    .method-tag{
-      display:inline-flex;
-      margin-top: 12px;
-      font-size: 12px;
-      color: var(--muted2);
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(18,18,24,0.45);
-      padding: 6px 10px;
-      border-radius: 999px;
-      backdrop-filter: blur(6px);
-    }
-
     .fineprint{
-      margin-top: 12px;
+      margin-top: 10px;
       color: rgba(255,255,255,0.45);
       font-size: 12px;
       line-height: 1.5;
@@ -491,14 +382,82 @@
       color: var(--muted2);
     }
 
+    /* =========================
+       ✅ MOBILE AJUSTES (principais)
+       ========================= */
     @media (max-width: 720px){
-      h1 { font-size: 40px; }
-      .container { padding-top: 56px; }
+      .container {
+        padding: 44px 18px 56px;
+      }
 
+      /* Topbar em 2 linhas, sem “brigar” com o hero */
+      .topbar{
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 18px;
+        gap: 12px;
+      }
+
+      .navlinks{
+        width: 100%;
+        justify-content: flex-start;
+        gap: 10px;
+      }
+
+      .link{
+        font-size: 13px;
+        padding: 9px 12px;
+        border-radius: 12px;
+      }
+
+      /* Logo: mantém a “pegada” grande sem estourar */
       .brand-logo{
         height: 36px;
         transform: translateX(-10px) scale(2.0);
       }
+
+      .badge{
+        font-size: 11px;
+        letter-spacing: 0.12em;
+      }
+
+      h1{
+        font-size: 40px;
+        line-height: 1.06;
+        margin-top: 16px;
+      }
+
+      .lead{
+        font-size: 16px;
+      }
+
+      /* CTA empilhado (fica MUITO melhor no mobile) */
+      .cta-row{
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .btn{
+        width: 100%;
+        justify-content: center;
+      }
+
+      /* Preview ocupa largura toda, sem “sobrar” */
+      .ai-preview{
+        max-width: 100%;
+        padding: 16px;
+        font-size: 12.5px;
+      }
+
+      footer{
+        margin-top: 52px;
+      }
+    }
+
+    /* Extra: telas bem pequenas */
+    @media (max-width: 420px){
+      h1{ font-size: 36px; }
+      .link{ padding: 9px 10px; }
+      .badge{ padding: 9px 12px; }
     }
   </style>
 </head>
@@ -545,40 +504,6 @@
         <p><span>Motivo:</span> “Equilíbrio real: desempenho, durabilidade e preço.”</p>
       </div>
     </header>
-
-    <!-- MÉTODO (NOVO BLOCO) -->
-    <section id="metodo">
-      <div class="method">
-        <div class="method-head">
-          <h2 class="method-title">O Método Flexihub</h2>
-          <span class="method-sub">Decisão não é opinião. É critério.</span>
-        </div>
-
-        <div class="method-grid">
-          <div class="method-card">
-            <h3>Critérios fixos</h3>
-            <p>Regras claras e repetíveis: desempenho real, durabilidade, custo/benefício e suporte.</p>
-            <span class="method-tag">Consistência</span>
-          </div>
-
-          <div class="method-card">
-            <h3>Um cenário por vez</h3>
-            <p>Você não escolhe “o melhor do mundo”. Você escolhe o melhor para o seu objetivo.</p>
-            <span class="method-tag">Contexto</span>
-          </div>
-
-          <div class="method-card">
-            <h3>Uma escolha final</h3>
-            <p>Sem ranking infinito. Sem dúvida eterna. Uma recomendação final — e pronto.</p>
-            <span class="method-tag">Clareza</span>
-          </div>
-        </div>
-
-        <p class="fineprint">
-          A proposta é simples: reduzir ruído e padronizar decisão. Se o cenário muda, a recomendação muda — os critérios não.
-        </p>
-      </div>
-    </section>
 
     <!-- CATEGORIAS EM ALTA -->
     <section id="em-alta">
