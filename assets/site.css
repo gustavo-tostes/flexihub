@@ -121,6 +121,9 @@ img{
   height:40px;
   width:auto;
   display:block;
+
+  transform:scale(2.35);
+  transform-origin:left center;
 }
 
 .nav{
@@ -822,6 +825,8 @@ footer{
 
   .brand-logo{
     height:36px;
+    transform:scale(2.15);
+    transform-origin:left center;
   }
 
   .phone-stage{
