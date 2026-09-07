@@ -2,590 +2,777 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Flexihub — A decisão final</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- ✅ FAVICON (força em todos os browsers + quebra cache) -->
-  <link rel="icon" href="/assets/favicon.ico?v=3" sizes="any">
-  <link rel="shortcut icon" href="/assets/favicon.ico?v=3">
-  <!-- Se você NÃO tiver esse arquivo, pode remover a linha abaixo -->
-  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=3">
-  <meta name="theme-color" content="#0e0e11">
+  <title>FlexiHub — Tudo que você ama em um só lugar</title>
 
-  <link rel="stylesheet" href="/assets/site.css">
+  <meta
+    name="description"
+    content="Acompanhe suas séries, filmes, livros e tudo que você ama em um só lugar com o FlexiHub."
+  />
 
-  <style>
-    :root{
-      --bg:#0e0e11;
-      --panel:#121218;
-      --card:#16161c;
-      --border:#24242d;
-      --text:#ffffff;
-      --muted:#cfcfd6;
-      --muted2:#8a8a93;
-      --accent:#ffffff;
-      --accentText:#0e0e11;
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
 
-      /* Tech vibe */
-      --glowA: rgba(120,120,255,0.18);
-      --glowB: rgba(120,255,220,0.08);
-      --grid: rgba(255,255,255,0.03);
-      --aiBorder: rgba(140,140,255,0.35);
-      --aiGlow: rgba(120,120,255,0.22);
-      --aiText: #e6e7ff;
-      --aiLabel: #aab0ff;
-      --aiGood: #9be9a8;
+  <meta name="theme-color" content="#07080d" />
 
-      /* CTA subtle */
-      --ctaBg: rgba(255,255,255,0.08);
-      --ctaBorder: rgba(255,255,255,0.16);
-    }
+  <!-- FAVICON -->
+  <link
+    rel="icon"
+    href="/assets/favicon.ico?v=4"
+    sizes="any"
+  />
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+  <link
+    rel="shortcut icon"
+    href="/assets/favicon.ico?v=4"
+  />
 
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-
-      background:
-        radial-gradient(900px 420px at 50% -12%, var(--glowA), transparent 60%),
-        radial-gradient(700px 360px at 10% 10%, var(--glowB), transparent 60%),
-        linear-gradient(var(--grid) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid) 1px, transparent 1px),
-        var(--bg);
-      background-size: auto, auto, 52px 52px, 52px 52px, auto;
-
-      color: var(--text);
-    }
-
-    .container {
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 72px 24px 64px;
-    }
-
-    /* Top nav */
-    .topbar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      margin-bottom: 25px;
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      text-decoration:none;
-      line-height: 0;
-      flex: 0 0 auto;
-    }
-
-    .brand-logo{
-      height: 60px;
-      width: auto;
-      display:block;
-      transform: translateX(-38px) scale(2.6);
-      transform-origin: left center;
-    }
-
-    .navlinks{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      flex-wrap: wrap;
-      justify-content:flex-end;
-    }
-
-    .link{
-      color: var(--muted);
-      text-decoration:none;
-      font-size:14px;
-      padding: 8px 10px;
-      border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(18,18,24,0.35);
-      backdrop-filter: blur(6px);
-      transition: filter .15s ease, background .15s ease, border-color .15s ease;
-      white-space: nowrap;
-    }
-    .link:hover{ filter: brightness(1.08); }
-
-    /* Subtle CTA link */
-    .link.cta{
-      color: var(--text);
-      background: var(--ctaBg);
-      border-color: var(--ctaBorder);
-      box-shadow: 0 0 40px rgba(140,140,255,0.12);
-    }
-    .link.cta:hover{
-      filter: brightness(1.12);
-      background: rgba(255,255,255,0.10);
-      border-color: rgba(255,255,255,0.22);
-    }
-
-    /* Badge */
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      border: 1px solid var(--border);
-      background: rgba(18,18,24,0.7);
-      border-radius: 999px;
-      color: var(--muted2);
-      font-size: 12px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      backdrop-filter: blur(6px);
-    }
-
-    /* Hero */
-    .hero {
-      position: relative;
-      padding-bottom: 34px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      margin-bottom: 40px;
-    }
-
-    h1 {
-      margin: 18px 0 12px;
-      font-size: 54px;
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-    }
-
-    .lead {
-      margin: 0 0 12px;
-      font-size: 18px;
-      line-height: 1.7;
-      color: var(--muted);
-      max-width: 820px;
-    }
-
-    .cta-row{
-      display:flex;
-      gap:12px;
-      flex-wrap: wrap;
-      margin-top: 16px;
-      align-items:center;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px 16px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: transparent;
-      color: var(--text);
-      text-decoration: none;
-      font-weight: 800;
-      font-size: 14px;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-
-    .btn.primary {
-      background: var(--accent);
-      color: var(--accentText);
-      border-color: transparent;
-    }
-
-    .btn:hover { filter: brightness(1.05); }
-
-    /* AI preview card */
-    .ai-preview {
-      margin-top: 18px;
-      max-width: 560px;
-      border-radius: 16px;
-      background: linear-gradient(180deg, rgba(28,28,40,0.95), rgba(18,18,24,0.95));
-      border: 1px solid var(--aiBorder);
-      box-shadow: 0 0 70px var(--aiGlow);
-      padding: 18px;
-      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-      font-size: 13px;
-    }
-
-    .ai-preview .title {
-      color: var(--aiLabel);
-      font-weight: 800;
-      margin-bottom: 10px;
-      letter-spacing: 0.10em;
-      font-size: 11px;
-      text-transform: uppercase;
-    }
-
-    .ai-preview p {
-      margin: 6px 0;
-      color: var(--aiText);
-      line-height: 1.5;
-    }
-
-    .ai-preview span {
-      color: var(--aiGood);
-      font-weight: 700;
-    }
-
-    /* Sections */
-    section { margin: 44px 0; }
-
-    .section-title-row{
-      display:flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 14px;
-      flex-wrap: wrap;
-    }
-
-    .section-title {
-      font-size: 22px;
-      margin: 0;
-      letter-spacing: -0.01em;
-    }
-
-    .section-link{
-      color: rgba(255,255,255,0.78);
-      text-decoration:none;
-      font-size: 14px;
-      border-bottom: 1px solid rgba(255,255,255,0.12);
-      padding-bottom: 1px;
-      white-space: nowrap;
-    }
-    .section-link:hover{
-      color: rgba(255,255,255,0.92);
-      border-bottom-color: rgba(255,255,255,0.22);
-    }
-
-    /* Cards grid */
-    .grid-4 {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-    }
-
-    @media (max-width: 1000px){
-      .grid-4 { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 620px){
-      .grid-4 { grid-template-columns: 1fr; }
-    }
-
-    .card {
-      position: relative;
-      border: 1px solid var(--border);
-      background: rgba(22,22,28,0.92);
-      border-radius: 16px;
-      padding: 18px;
-      overflow: hidden;
-      backdrop-filter: blur(6px);
-      text-decoration:none;
-      color: var(--text);
-      min-height: 132px;
-      transition: transform .15s ease, filter .15s ease, border-color .15s ease;
-    }
-
-    .card:hover{
-      transform: translateY(-1px);
-      filter: brightness(1.03);
-      border-color: rgba(255,255,255,0.14);
-    }
-
-    .card::before{
-      content:"";
-      position:absolute;
-      inset:-40%;
-      background:
-        radial-gradient(closest-side, rgba(140,140,255,0.10), transparent 65%),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size: auto, 56px 56px, 56px 56px;
-      transform: rotate(8deg);
-      opacity: 0.45;
-      pointer-events:none;
-    }
-
-    .card > * { position: relative; }
-
-    .card h3 { margin: 0 0 8px; font-size: 16px; letter-spacing: 0.02em; }
-    .card p  { margin: 0; color: var(--muted); line-height: 1.7; font-size: 15px; }
-
-    .chip{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(18,18,24,0.45);
-      color: var(--muted2);
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      margin-top: 12px;
-      backdrop-filter: blur(6px);
-      white-space: nowrap;
-    }
-
-    /* "Ver todas" card */
-    .card.all{
-      border-style: dashed;
-      background: rgba(18,18,24,0.38);
-    }
-    .card.all p{ color: rgba(255,255,255,0.66); }
-    .arrow{
-      display:inline-block;
-      margin-top: 10px;
-      font-weight: 900;
-      letter-spacing: -0.01em;
-      color: rgba(255,255,255,0.85);
-    }
-
-    /* How it works */
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-    @media (max-width: 900px){
-      .grid-3 { grid-template-columns: 1fr; }
-    }
-
-    .step {
-      position: relative;
-      border: 1px solid var(--border);
-      background: rgba(18,18,24,0.6);
-      border-radius: 16px;
-      padding: 18px;
-      backdrop-filter: blur(6px);
-      overflow:hidden;
-    }
-    .step .num{
-      position:absolute;
-      right: 14px;
-      top: 10px;
-      font-size: 44px;
-      font-weight: 900;
-      color: rgba(255,255,255,0.06);
-      letter-spacing: -0.04em;
-      user-select:none;
-      pointer-events:none;
-    }
-    .step h3{ margin: 0 0 8px; font-size:16px; }
-    .step p { margin:0; color: var(--muted); line-height:1.7; font-size:15px; }
-
-    .fineprint{
-      margin-top: 10px;
-      color: rgba(255,255,255,0.45);
-      font-size: 12px;
-      line-height: 1.5;
-      max-width: 760px;
-    }
-
-    footer {
-      margin-top: 64px;
-      padding-top: 18px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      font-size: 13px;
-      color: var(--muted2);
-    }
-
-    /* =========================
-       ✅ MOBILE AJUSTES (principais)
-       ========================= */
-    @media (max-width: 720px){
-      .container {
-        padding: 44px 18px 56px;
-      }
-
-      /* Topbar em 2 linhas, sem “brigar” com o hero */
-      .topbar{
-        flex-direction: column;
-        align-items: flex-start;
-        margin-bottom: 18px;
-        gap: 12px;
-      }
-
-      .navlinks{
-        width: 100%;
-        justify-content: flex-start;
-        gap: 10px;
-      }
-
-      .link{
-        font-size: 13px;
-        padding: 9px 12px;
-        border-radius: 12px;
-      }
-
-      /* Logo: mantém a “pegada” grande sem estourar */
-      .brand-logo{
-        height: 36px;
-        transform: translateX(-10px) scale(2.0);
-      }
-
-      .badge{
-        font-size: 11px;
-        letter-spacing: 0.12em;
-      }
-
-      h1{
-        font-size: 40px;
-        line-height: 1.06;
-        margin-top: 16px;
-      }
-
-      .lead{
-        font-size: 16px;
-      }
-
-      /* CTA empilhado */
-      .cta-row{
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .btn{
-        width: 100%;
-        justify-content: center;
-      }
-
-      .ai-preview{
-        max-width: 100%;
-        padding: 16px;
-        font-size: 12.5px;
-      }
-
-      footer{
-        margin-top: 52px;
-      }
-    }
-
-    @media (max-width: 420px){
-      h1{ font-size: 36px; }
-      .link{ padding: 9px 10px; }
-      .badge{ padding: 9px 12px; }
-    }
-  </style>
+  <!-- CSS -->
+  <link
+    rel="stylesheet"
+    href="/assets/site.css"
+  />
 </head>
 
 <body>
-  <div class="container">
 
-    <!-- TOPBAR -->
-    <div class="topbar">
-      <a class="brand" href="/">
-        <img class="brand-logo" src="/assets/Logo.png" alt="Flexihub" />
-      </a>
+  <div class="site-shell">
 
-      <div class="navlinks">
-        <a class="link" href="/categorias/">Categorias</a>
-        <a class="link" href="#como-funciona">Como funciona</a>
-        <a class="link cta" href="/sugestoes/">Sugestões</a>
+    <!-- =====================================================
+         TOPO
+         ===================================================== -->
+
+    <div class="topbar-wrap">
+      <div class="container">
+
+        <header class="topbar">
+
+          <a
+            class="brand"
+            href="/"
+            aria-label="FlexiHub"
+          >
+            <img
+              class="brand-logo"
+              src="/assets/Logo.png"
+              alt="FlexiHub"
+            />
+          </a>
+
+          <nav
+            class="nav"
+            aria-label="Navegação principal"
+          >
+
+            <a href="#recursos">
+              Recursos
+            </a>
+
+            <a href="#interface">
+              Aplicativo
+            </a>
+
+            <a href="#como-funciona">
+              Como funciona
+            </a>
+
+            <a
+              class="cta"
+              href="#lancamento"
+            >
+              Quero conhecer
+            </a>
+
+          </nav>
+
+        </header>
+
       </div>
     </div>
 
-    <!-- HERO -->
-    <header class="hero">
-      <div class="badge fade-in-up">A DECISÃO FINAL • SEM RUÍDO</div>
 
-      <h1 class="fade-in-up" style="animation-delay:.06s;">
-        Pare de pesquisar.<br/>A Flexihub decide por você.
-      </h1>
+    <!-- =====================================================
+         HERO
+         ===================================================== -->
 
-      <p class="lead fade-in-up" style="animation-delay:.12s;">
-        Um produto por cenário. Sem comparações infinitas, sem arrependimento.
-      </p>
+    <main>
 
-      <p class="lead fade-in-up" style="animation-delay:.18s;">
-        Você escolhe o objetivo. A Flexihub entrega a recomendação final — com links nas principais plataformas.
-      </p>
+      <section class="hero">
 
-      <div class="cta-row fade-in-up" style="animation-delay:.24s;">
-        <a class="btn primary" href="#em-alta">Ver categorias em alta</a>
-        <a class="btn" href="/sugestoes/">Sugerir categoria</a>
-      </div>
+        <div class="container">
 
-      <div class="ai-preview fade-in-up" style="animation-delay:.30s;" aria-label="Preview de recomendação">
-        <div class="title">Preview • Recomendação Direta</div>
-        <p><span>Cenário:</span> “Notebook para estudar e trabalhar (uso geral)”</p>
-        <p><span>Decisão:</span> “Compre este modelo. Ponto.”</p>
-        <p><span>Motivo:</span> “Equilíbrio real: desempenho, durabilidade e preço.”</p>
-      </div>
-    </header>
+          <div class="hero-grid">
 
-    <!-- CATEGORIAS EM ALTA -->
-    <section id="em-alta">
-      <div class="section-title-row">
-        <h2 class="section-title">Categorias em alta</h2>
-        <a class="section-link" href="/categorias/">Ver todas →</a>
-      </div>
+            <!-- TEXTO -->
 
-      <div class="grid-4">
-        <a class="card" href="/notebooks/">
-          <h3>Notebooks</h3>
-          <p>Decisões por cenário: faculdade, trabalho, programação, uso básico.</p>
-          <div class="chip">Em alta</div>
-        </a>
+            <div class="hero-content">
 
-        <a class="card" href="/monitores/">
-          <h3>Monitores</h3>
-          <p>Escolha direta para home office, design ou uso básico.</p>
-          <div class="chip">Em alta</div>
-        </a>
+              <div class="eyebrow">
+                FLEXIHUB MOBILE
+              </div>
 
-        <a class="card" href="/tvs/">
-          <h3>TVs</h3>
-          <p>Escolha por tamanho de ambiente e tipo de uso.</p>
-          <div class="chip">Em alta</div>
-        </a>
+              <h1>
+                Acompanhe tudo<br />
+                <span class="accent">
+                  que você ama.
+                </span>
+              </h1>
 
-        <a class="card all" href="/categorias/">
-          <h3>Ver todas as categorias</h3>
-          <p>Acesse a lista completa e explore por cenário.</p>
-          <div class="arrow">Abrir lista completa →</div>
-        </a>
-      </div>
+              <p class="hero-copy">
+                Séries, filmes, livros e muito mais.
+                Organize o que você acompanha, descubra o que vem
+                pela frente e tenha tudo reunido em um só lugar.
+              </p>
 
-      <p class="fineprint">
-        A Flexihub começa com poucas categorias por uma razão: autoridade nasce de consistência.
-        Conforme os cenários forem validados, novas categorias entram.
-      </p>
+              <div class="hero-actions">
 
-      <p class="fineprint">
-        Transparência: links podem ser de afiliado. Isso não muda a decisão — só sustenta o projeto.
-      </p>
-    </section>
+                <a
+                  class="btn primary"
+                  href="#interface"
+                >
+                  Conhecer o FlexiHub
+                </a>
 
-    <!-- COMO FUNCIONA -->
-    <section id="como-funciona">
-      <h2 class="section-title" style="margin-bottom:14px;">Como funciona</h2>
+                <a
+                  class="btn"
+                  href="#lancamento"
+                >
+                  Acompanhar lançamento
+                </a>
 
-      <div class="grid-3">
-        <div class="step">
-          <div class="num">01</div>
-          <h3>Você escolhe o cenário</h3>
-          <p>“Notebook para faculdade”, “Notebook para trabalho”, etc.</p>
+              </div>
+
+              <div class="hero-note">
+                Em desenvolvimento para dispositivos móveis.
+              </div>
+
+            </div>
+
+
+            <!-- CELULARES -->
+
+            <div
+              class="phone-stage"
+              aria-label="Telas do aplicativo FlexiHub"
+            >
+
+              <div class="phone-glow"></div>
+
+
+              <!-- ESQUERDA -->
+
+              <div class="phone left">
+
+                <div class="phone-screen">
+
+                  <img
+                    src="/assets/app-buscar.jpg"
+                    alt="Tela Buscar do FlexiHub"
+                  />
+
+                </div>
+
+              </div>
+
+
+              <!-- PRINCIPAL -->
+
+              <div class="phone main">
+
+                <div class="phone-screen">
+
+                  <img
+                    src="/assets/app-home.jpg"
+                    alt="Tela inicial do FlexiHub"
+                  />
+
+                </div>
+
+              </div>
+
+
+              <!-- DIREITA -->
+
+              <div class="phone right">
+
+                <div class="phone-screen">
+
+                  <img
+                    src="/assets/app-detalhes.jpg"
+                    alt="Tela de detalhes do FlexiHub"
+                  />
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
         </div>
 
-        <div class="step">
-          <div class="num">02</div>
-          <h3>A Flexihub decide</h3>
-          <p>Uma recomendação final baseada em critérios claros e repetíveis.</p>
+      </section>
+
+
+      <!-- =====================================================
+           RESUMO
+           ===================================================== -->
+
+      <section class="section compact">
+
+        <div class="container">
+
+          <div class="stats-grid">
+
+            <div class="stat-card">
+
+              <div class="stat-value">
+                01
+              </div>
+
+              <div class="stat-label">
+                Um lugar para acompanhar seus conteúdos favoritos.
+              </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+              <div class="stat-value">
+                02
+              </div>
+
+              <div class="stat-label">
+                Progresso, listas e lançamentos organizados.
+              </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+              <div class="stat-value">
+                03
+              </div>
+
+              <div class="stat-label">
+                Uma experiência simples, visual e feita para você.
+              </div>
+
+            </div>
+
+          </div>
+
         </div>
 
-        <div class="step">
-          <div class="num">03</div>
-          <h3>Você compra sem ruído</h3>
-          <p>Links diretos em plataformas confiáveis.</p>
+      </section>
+
+
+      <!-- =====================================================
+           RECURSOS
+           ===================================================== -->
+
+      <section
+        class="section"
+        id="recursos"
+      >
+
+        <div class="container">
+
+          <h2 class="section-title">
+            Tudo organizado.<br />
+            Sem complicação.
+          </h2>
+
+          <p class="section-subtitle">
+            O FlexiHub foi criado para reunir em uma única experiência
+            aquilo que hoje fica espalhado entre aplicativos, anotações
+            e listas diferentes.
+          </p>
+
+
+          <div class="feature-grid">
+
+            <!-- RECURSO 1 -->
+
+            <article class="feature-card">
+
+              <div class="feature-icon">
+                ✓
+              </div>
+
+              <h3>
+                Acompanhe seu progresso
+              </h3>
+
+              <p>
+                Saiba onde você parou e acompanhe o andamento
+                das suas séries e conteúdos.
+              </p>
+
+            </article>
+
+
+            <!-- RECURSO 2 -->
+
+            <article class="feature-card">
+
+              <div class="feature-icon">
+                ＋
+              </div>
+
+              <h3>
+                Monte suas listas
+              </h3>
+
+              <p>
+                Organize o que está acompanhando, o que pretende
+                começar e tudo aquilo que quer guardar para depois.
+              </p>
+
+            </article>
+
+
+            <!-- RECURSO 3 -->
+
+            <article class="feature-card">
+
+              <div class="feature-icon">
+                ◷
+              </div>
+
+              <h3>
+                Não perca lançamentos
+              </h3>
+
+              <p>
+                Consulte o calendário e veja quando novos episódios
+                e conteúdos ficam disponíveis.
+              </p>
+
+            </article>
+
+          </div>
+
         </div>
-      </div>
-    </section>
+
+      </section>
+
+
+      <!-- =====================================================
+           INTERFACE
+           ===================================================== -->
+
+      <section
+        class="section"
+        id="interface"
+      >
+
+        <div class="container">
+
+          <h2 class="section-title">
+            O FlexiHub<br />
+            do jeito que ele é.
+          </h2>
+
+          <p class="section-subtitle">
+            Uma interface escura, limpa e pensada para deixar
+            seus conteúdos em primeiro plano.
+          </p>
+
+
+          <div class="screens-grid">
+
+            <div class="screen-preview">
+
+              <img
+                src="/assets/app-home.jpg"
+                alt="Tela Em andamento do FlexiHub"
+                loading="lazy"
+              />
+
+            </div>
+
+
+            <div class="screen-preview">
+
+              <img
+                src="/assets/app-buscar.jpg"
+                alt="Tela Buscar do FlexiHub"
+                loading="lazy"
+              />
+
+            </div>
+
+
+            <div class="screen-preview">
+
+              <img
+                src="/assets/app-listas.jpg"
+                alt="Tela Listas do FlexiHub"
+                loading="lazy"
+              />
+
+            </div>
+
+
+            <div class="screen-preview">
+
+              <img
+                src="/assets/app-calendario.jpg"
+                alt="Tela Calendário do FlexiHub"
+                loading="lazy"
+              />
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================================================
+           COMO FUNCIONA
+           ===================================================== -->
+
+      <section
+        class="section"
+        id="como-funciona"
+      >
+
+        <div class="container">
+
+          <div class="showcase">
+
+            <!-- TEXTO -->
+
+            <div class="showcase-copy">
+
+              <h2>
+                Encontre.<br />
+                Adicione.<br />
+                Acompanhe.
+              </h2>
+
+              <p>
+                O FlexiHub foi pensado para tornar simples uma rotina
+                que normalmente exige vários aplicativos.
+              </p>
+
+
+              <ul class="showcase-list">
+
+                <li>
+                  Busque o conteúdo que você está assistindo,
+                  lendo ou acompanhando.
+                </li>
+
+                <li>
+                  Adicione à sua biblioteca e escolha
+                  como deseja organizá-lo.
+                </li>
+
+                <li>
+                  Acompanhe progresso, informações
+                  e próximos lançamentos.
+                </li>
+
+              </ul>
+
+            </div>
+
+
+            <!-- IMAGEM -->
+
+            <div class="showcase-media">
+
+              <div class="screen-card">
+
+                <img
+                  src="/assets/app-detalhes.jpg"
+                  alt="Tela de detalhes de um conteúdo no FlexiHub"
+                  loading="lazy"
+                />
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================================================
+           LISTAS
+           ===================================================== -->
+
+      <section class="section">
+
+        <div class="container">
+
+          <div class="showcase reverse">
+
+            <!-- TEXTO -->
+
+            <div class="showcase-copy">
+
+              <h2>
+                Sua biblioteca.<br />
+                Do seu jeito.
+              </h2>
+
+              <p>
+                O que está em andamento, o que você terminou
+                e aquilo que pretende acompanhar depois ficam
+                organizados de forma simples e visual.
+              </p>
+
+
+              <ul class="showcase-list">
+
+                <li>
+                  Conteúdos em andamento.
+                </li>
+
+                <li>
+                  Conteúdos concluídos.
+                </li>
+
+                <li>
+                  Itens salvos para depois.
+                </li>
+
+              </ul>
+
+            </div>
+
+
+            <!-- IMAGEM -->
+
+            <div class="showcase-media">
+
+              <div class="screen-card">
+
+                <img
+                  src="/assets/app-listas.jpg"
+                  alt="Tela de listas do FlexiHub"
+                  loading="lazy"
+                />
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================================================
+           CALENDÁRIO
+           ===================================================== -->
+
+      <section class="section">
+
+        <div class="container">
+
+          <div class="showcase">
+
+            <!-- TEXTO -->
+
+            <div class="showcase-copy">
+
+              <h2>
+                Saiba o que<br />
+                vem por aí.
+              </h2>
+
+              <p>
+                O calendário ajuda você a acompanhar os próximos
+                episódios e lançamentos dos conteúdos que fazem
+                parte da sua rotina.
+              </p>
+
+
+              <ul class="showcase-list">
+
+                <li>
+                  Visualização por data.
+                </li>
+
+                <li>
+                  Próximos episódios.
+                </li>
+
+                <li>
+                  Tudo integrado à sua biblioteca.
+                </li>
+
+              </ul>
+
+            </div>
+
+
+            <!-- IMAGEM -->
+
+            <div class="showcase-media">
+
+              <div class="screen-card">
+
+                <img
+                  src="/assets/app-calendario.jpg"
+                  alt="Calendário do FlexiHub"
+                  loading="lazy"
+                />
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================================================
+           FRASE / POSICIONAMENTO
+           ===================================================== -->
+
+      <section class="section compact">
+
+        <div class="container">
+
+          <div class="quote-card">
+
+            <blockquote>
+              Menos tempo tentando lembrar onde você parou.
+              Mais tempo aproveitando aquilo que você gosta.
+            </blockquote>
+
+            <p>
+              FlexiHub
+            </p>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =====================================================
+           LANÇAMENTO
+           ===================================================== -->
+
+      <section
+        class="section waitlist"
+        id="lancamento"
+      >
+
+        <div class="container">
+
+          <div class="waitlist-box">
+
+            <h2>
+              O FlexiHub está chegando.
+            </h2>
+
+            <p>
+              Deixe seu e-mail para acompanhar as novidades
+              e saber quando o aplicativo estiver disponível.
+            </p>
+
+
+            <form
+              class="waitlist-form"
+              action="https://formspree.io/f/xnjjndby"
+              method="POST"
+            >
+
+              <input
+                type="email"
+                name="email"
+                placeholder="Seu melhor e-mail"
+                aria-label="Seu melhor e-mail"
+                autocomplete="email"
+                required
+              />
+
+              <input
+                type="hidden"
+                name="origem"
+                value="Lista de espera FlexiHub Mobile"
+              />
+
+              <button
+                class="btn primary"
+                type="submit"
+              >
+                Quero acompanhar
+              </button>
+
+            </form>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         RODAPÉ
+         ===================================================== -->
 
     <footer>
-      Flexihub ©<br/>
-      A decisão final, sem ruído.
+
+      <div class="container">
+
+        <div class="footer-inner">
+
+          <div>
+            FlexiHub © 2026
+          </div>
+
+
+          <div class="footer-links">
+
+            <a href="#recursos">
+              Recursos
+            </a>
+
+            <a href="#interface">
+              Aplicativo
+            </a>
+
+            <a href="#lancamento">
+              Novidades
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
     </footer>
+
   </div>
+
 </body>
 </html>
