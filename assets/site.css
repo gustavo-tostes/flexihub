@@ -1005,13 +1005,21 @@ input{
   justify-content:center;
 }
 
+/* =========================================================
+   HARRY POTTER — RECORTE CONTROLADO
+   ========================================================= */
+
 .screen-card{
   width:min(
     390px,
     100%
   );
 
+  height:700px;
+
   padding:8px;
+
+  overflow:hidden;
 
   border-radius:36px;
 
@@ -1030,8 +1038,12 @@ input{
   display:block;
 
   width:100%;
+  height:auto;
 
   border-radius:29px;
+
+  object-fit:cover;
+  object-position:top;
 }
 
 
@@ -1593,6 +1605,10 @@ footer{
     padding-bottom:72px;
   }
 
+  .screen-card{
+    height:620px;
+  }
+
   .about-visual,
   .waitlist-box{
     min-height:auto;
@@ -1670,6 +1686,10 @@ footer{
 
   .section-title{
     font-size:38px;
+  }
+
+  .screen-card{
+    height:560px;
   }
 
 }
