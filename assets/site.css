@@ -766,7 +766,7 @@ input{
 
 #recursos.section{
   padding-top:96px;
-  padding-bottom:96px;
+  padding-bottom:78px;
 }
 
 .resource-grid{
@@ -895,6 +895,9 @@ input{
    ========================================================= */
 
 .app-showcase-section{
+  padding-top:64px;
+  padding-bottom:72px;
+
   background:
     radial-gradient(
       650px 430px at 80% 50%,
@@ -1598,7 +1601,12 @@ footer{
 
   #recursos.section{
     padding-top:72px;
-    padding-bottom:72px;
+    padding-bottom:56px;
+  }
+
+  .app-showcase-section{
+    padding-top:52px;
+    padding-bottom:60px;
   }
 
   .about-visual,
