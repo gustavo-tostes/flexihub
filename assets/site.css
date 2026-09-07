@@ -709,23 +709,27 @@ input{
    ========================================================= */
 
 .section-heading{
-  display:flex;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:end;
 
-  align-items:flex-end;
+  gap:24px;
 
-  justify-content:space-between;
+  margin-bottom:36px;
+}
 
-  gap:40px;
-
-  margin-bottom:44px;
+.section-heading > div{
+  min-width:0;
 }
 
 .section-link{
-  flex:0 0 auto;
+  align-self:end;
+
+  margin-bottom:4px;
 
   padding:
-    12px
-    16px;
+    11px
+    15px;
 
   border:
     1px solid
@@ -760,6 +764,11 @@ input{
    RESOURCE CARDS
    ========================================================= */
 
+#recursos.section{
+  padding-top:96px;
+  padding-bottom:96px;
+}
+
 .resource-grid{
   display:grid;
 
@@ -775,8 +784,8 @@ input{
   min-width:0;
 
   padding:
-    19px
-    19px
+    18px
+    18px
     22px;
 
   overflow:hidden;
@@ -815,7 +824,7 @@ input{
 .resource-phone{
   width:100%;
 
-  height:390px;
+  height:360px;
 
   overflow:hidden;
 
@@ -841,7 +850,7 @@ input{
 
 .resource-content{
   padding:
-    19px
+    18px
     4px
     0;
 }
@@ -1427,9 +1436,13 @@ footer{
   }
 
   .section-heading{
-    align-items:flex-start;
+    grid-template-columns:1fr;
+    align-items:start;
+  }
 
-    flex-direction:column;
+  .section-link{
+    justify-self:start;
+    margin-bottom:0;
   }
 
   .footer-inner{
@@ -1553,7 +1566,7 @@ footer{
   }
 
   .resource-phone{
-    height:310px;
+    height:285px;
   }
 
   .resource-content{
@@ -1573,6 +1586,11 @@ footer{
 
   .section{
     padding:78px 0;
+  }
+
+  #recursos.section{
+    padding-top:72px;
+    padding-bottom:72px;
   }
 
   .about-visual,
@@ -1647,7 +1665,7 @@ footer{
   }
 
   .resource-phone{
-    height:265px;
+    height:245px;
   }
 
   .section-title{
